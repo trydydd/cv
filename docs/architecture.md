@@ -27,10 +27,10 @@ The public site landing page is a role selector. The two selectable labels are i
 
 ```mermaid
 flowchart TD
-    A[/] --> B[RoleSelector]
-    B -->|Tech| C[/resumes]
-    B -->|Everyone| D[/resume/gold]
-    C --> E[/resume/:id]
+    A["/"] --> B["Role Selector"]
+    B -->|Tech| C["/resumes"]
+    B -->|Everyone| D["/resume/gold"]
+    C --> E["/resume/:id"]
     D --> F[Configured Gold Standard Resume]
 ```
 
