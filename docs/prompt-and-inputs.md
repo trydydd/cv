@@ -61,7 +61,7 @@ Rules:
 - Use plain Markdown only.
 - Do not include commentary outside the resume.
 - Prefer concise bullets.
-- If information is missing, omit it instead of guessing.
+- If information is missing, ask clarifying questions.
 
 Candidate data:
 
