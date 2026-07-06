@@ -15,9 +15,11 @@ Before the workflow can publish the site, configure the repository on GitHub:
 3. Under **Build and deployment**, set **Source** to **GitHub Actions**. This tells GitHub Pages to accept the artifact uploaded by `.github/workflows/deploy-pages.yml` instead of publishing from a branch.
 4. Confirm GitHub Actions are enabled for the repository under **Settings → Actions → General**. If your account or organization restricts Actions, allow this repository to run workflows and allow the official `actions/*` actions used by the workflow.
 5. Confirm the deployment workflow keeps the minimum Pages permissions: `contents: read`, `pages: write`, and `id-token: write`. These are already declared in `.github/workflows/deploy-pages.yml`; do not replace them with model-provider secrets.
-6. Use the default `github-pages` environment unless you intentionally customize Pages environments. If protection rules are added to that environment, deployment will wait for those approvals.
-7. Make sure the repository name and Astro base path agree. This repo currently builds for a project site at `/cv`; if the repository is renamed, update `base` in `astro.config.mjs`. If this becomes a user or organization site such as `<owner>.github.io`, remove the `/cv` base path.
-8. Optional: configure a custom domain in **Settings → Pages → Custom domain** after the default Pages URL works.
+6. The Pages workflow currently sets `ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true` because GitHub's official Pages deploy action still targets Node 20 while GitHub-hosted runners are transitioning JavaScript actions to Node 24. Keep this as a temporary compatibility shim and remove it once `actions/deploy-pages` publishes a Node 24-compatible major version.
+7. Use the default `github-pages` environment unless you intentionally customize Pages environments. If protection rules are added to that environment, deployment will wait for those approvals.
+8. Make sure the repository name and Astro base path agree. This repo currently builds for a project site at `/cv`; if the repository is renamed, update `base` in `astro.config.mjs`. If this becomes a user or organization site such as `<owner>.github.io`, remove the `/cv` base path.
+9. Optional: configure a custom domain in **Settings → Pages → Custom domain** after the default Pages URL works.
+
 
 No GitHub-side model secrets are required for normal validation or deployment because resume generation remains a manual pre-commit step.
 
