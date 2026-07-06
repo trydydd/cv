@@ -20,6 +20,7 @@ Before the workflow can publish the site, configure the repository on GitHub:
 8. Make sure the repository name and Astro base path agree. This repo currently builds for a project site at `/cv`; if the repository is renamed, update `base` in `astro.config.mjs`. If this becomes a user or organization site such as `<owner>.github.io`, remove the `/cv` base path.
 9. Optional: configure a custom domain in **Settings → Pages → Custom domain** after the default Pages URL works.
 
+
 No GitHub-side model secrets are required for normal validation or deployment because resume generation remains a manual pre-commit step.
 
 ## Manual Generation and Publication Flow
