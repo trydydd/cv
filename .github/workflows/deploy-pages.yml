@@ -10,15 +10,12 @@ permissions:
   pages: write
   id-token: write
 
-<<<<<<< codex/plan-project-for-deploying-multiple-resume-versions-eranxk
+
 # Temporary compatibility shim for official Pages actions while GitHub
 # transitions JavaScript actions from Node 20 to Node 24 in 2026.
 # Remove once actions/deploy-pages publishes a Node 24-compatible major tag.
 env:
   ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-
-=======
->>>>>>> main
 concurrency:
   group: pages
   cancel-in-progress: false
