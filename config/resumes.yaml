@@ -1,0 +1,89 @@
+resumes:
+  - id: frontier-gold
+    label: Gold Standard
+    description: Synthetic frontier-authored resume for general viewers.
+    tier: frontier
+    provider: Synthetic Frontier Model
+    model: frontier-demo
+    enabled: true
+    showInGallery: true
+    isGoldCandidate: true
+    generatedAt: 2026-07-06T00:00:00Z
+    promptVersion: 1
+    resumeHash: synthetic-gold-demo
+    pdfPath: /cv/resumes/frontier-gold.pdf
+    candidate:
+      name: Jordan Example
+      title: Staff Platform Engineer
+      summary: Builds reliable developer platforms, AI-enabled workflows, and production systems that help teams ship faster with confidence.
+      contact:
+        location: Remote, United States
+        email: jordan@example.com
+        website: https://example.com
+      highlights:
+        - Led a platform modernization program that reduced release friction across several product teams.
+        - Designed internal AI workflow prototypes that turned manual documentation and review loops into repeatable systems.
+        - Mentored engineers on observability, testing strategy, and pragmatic architecture decisions.
+      experience:
+        - company: Northstar Systems
+          role: Staff Platform Engineer
+          period: 2022 – Present
+          bullets:
+            - Built a self-service delivery platform with reusable service templates, policy checks, and production readiness gates.
+            - Partnered with product and security teams to make deployment safety visible without slowing delivery.
+        - company: Atlas Labs
+          role: Senior Software Engineer
+          period: 2018 – 2022
+          bullets:
+            - Created TypeScript and Python services for data-heavy customer workflows.
+            - Improved test coverage and incident response practices for a high-traffic application surface.
+      skills:
+        - Platform engineering
+        - TypeScript
+        - Python
+        - Observability
+        - AI workflow design
+        - Technical leadership
+  - id: local-demo
+    label: Local Demo
+    description: Synthetic low-VRAM local model experiment resume.
+    tier: local
+    provider: Offline SLM Runner
+    model: local-demo-3b-q4
+    enabled: true
+    showInGallery: true
+    isGoldCandidate: false
+    generatedAt: 2026-07-06T00:00:00Z
+    promptVersion: 1
+    resumeHash: synthetic-local-demo
+    pdfPath: /cv/resumes/local-demo.pdf
+    candidate:
+      name: Jordan Example
+      title: Platform Engineer
+      summary: Engineer focused on developer tools, automation, and dependable software delivery.
+      contact:
+        location: Remote, United States
+        email: jordan@example.com
+        website: https://example.com
+      highlights:
+        - Helps teams ship software with clearer tools and safer release paths.
+        - Works across TypeScript, Python, cloud services, and testing systems.
+      experience:
+        - company: Northstar Systems
+          role: Staff Platform Engineer
+          period: 2022 – Present
+          bullets:
+            - Supported delivery tooling and internal platform workflows.
+            - Improved service templates and release documentation.
+        - company: Atlas Labs
+          role: Senior Software Engineer
+          period: 2018 – 2022
+          bullets:
+            - Built application services and automation for product teams.
+            - Contributed to testing and operational improvements.
+      skills:
+        - TypeScript
+        - Python
+        - Developer tooling
+        - Testing
+        - Cloud systems

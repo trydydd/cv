@@ -1,0 +1,32 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import ResumeDocument from '../../components/ResumeDocument.astro';
+import MetadataPanel from '../../components/MetadataPanel.astro';
+import { getEnabledResumes, getResumeById } from '../../lib/config';
+
+export function getStaticPaths() {
+  return getEnabledResumes().map((resume) => ({ params: { id: resume.id } }));
+}
+
+const { id } = Astro.params;
+const resume = id ? getResumeById(id) : undefined;
+if (!resume) return Astro.redirect('/cv/404');
+---
+<SiteLayout title={`${resume.label} · Resume Lab`} description={resume.description}>
+  <SiteNav />
+  <main class="container">
+    <header class="page-header">
+      <div class="badges">
+        <span class="badge">{resume.tier}</span>
+        {resume.isGoldCandidate && <span class="badge">gold</span>}
+      </div>
+      <h1 class="page-title">{resume.label}</h1>
+      <p class="lede">{resume.description}</p>
+    </header>
+    <div class="resume-layout">
+      <ResumeDocument resume={resume} />
+      <MetadataPanel resume={resume} />
+    </div>
+  </main>
+</SiteLayout>

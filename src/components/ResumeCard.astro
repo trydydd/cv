@@ -1,0 +1,16 @@
+---
+import type { ResumeEntry } from '../lib/types';
+interface Props { resume: ResumeEntry; }
+const { resume } = Astro.props;
+---
+<a class="resume-card" href={`/cv/resume/${resume.id}`}>
+  <div class="badges">
+    <span class="badge">{resume.tier}</span>
+    {resume.isGoldCandidate && <span class="badge">gold</span>}
+  </div>
+  <div>
+    <h2>{resume.label}</h2>
+    <p>{resume.description}</p>
+  </div>
+  <small>{resume.provider} · {resume.model}</small>
+</a>
