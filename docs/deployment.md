@@ -2,50 +2,81 @@
 
 ## GitHub Pages Target
 
-The site should deploy as a static artifact to GitHub Pages.
+The project deploys a static artifact to GitHub Pages. Model access and resume generation are intentionally manual and are not coupled to the GitHub Actions deployment pipeline.
+
+The repository should contain the static site files, generated resume outputs, configuration, docs, and tests needed for validation. GitHub Actions should validate and deploy committed files; it should not call model APIs during normal pull-request validation or Pages deployment.
+
+## Manual Generation and Publication Flow
 
 ```mermaid
 sequenceDiagram
-    participant Dev as Developer
-    participant Repo as GitHub Repository
-    participant CI as GitHub Actions
+    participant Human as Human Operator
+    participant Model as Selected Model
+    participant Repo as cv Repository
+    participant CI as Validation CI
     participant Pages as GitHub Pages
 
-    Dev->>Repo: Push source, config, docs, generated resumes
-    Repo->>CI: Run validation and tests
-    CI->>CI: Build Astro site
-    CI->>CI: Render PDFs
-    CI->>Pages: Deploy static artifact
-    Pages-->>Dev: Serve role selector and resumes
+    Human->>Model: Send prompt, tech stack, directory structure, and resume YAML
+    Model-->>Human: Return generated static site and resume files
+    Human->>Repo: Add or replace static site files
+    Human->>Repo: Commit files and open pull request
+    Repo->>CI: Trigger validation only
+    CI-->>Repo: Report test and build status
+    Human->>Repo: Merge to main
+    Repo->>Pages: Build and deploy committed static artifact
+    Pages-->>Human: Serve updated resume site
 ```
 
-## Recommended Workflows
+The manual flow is:
 
-### Validation workflow
+1. Send the shared prompt and YAML resume to the selected model. The prompt should include the static-site tech stack, expected directory structure, role-routing rules, output format, and validation expectations.
+2. Add the generated static site files, resume files, metadata, and configuration updates to the `cv` repository.
+3. Commit the files and trigger validation through a pull request.
+4. Merge to `main` after validation passes; the Pages workflow deploys the committed static artifact that includes the new or updated resume.
 
-Runs on pull request and push:
+## Prompt Requirements for Static Site Generation
+
+The prompt used for manual generation should include enough project context for the model to produce compatible files without requiring CI-time model access.
+
+Minimum prompt contents:
+
+- Static-site stack: TypeScript, Astro, Tailwind CSS, YAML configuration, Markdown resume outputs, and HTML/PDF publication targets.
+- Directory structure: expected `src/`, `config/`, `inputs/`, `generated/`, `public/`, `docs/`, and workflow locations.
+- Site routing: `Everyone` routes to the configured gold-standard resume; `Tech` routes to the configurable resume gallery.
+- Registry rules: add, remove, hide, and promote resumes through YAML configuration.
+- Testing expectations: happy-path and sad-path tests for the role selector, gold route, gallery, and resume registry validation.
+- Output expectations: files should be ready to commit, validate, build, and deploy without calling a model from CI.
+
+## Validation Workflow
+
+Runs on pull request and push. This workflow validates committed files only.
 
 1. Install dependencies.
 2. Validate YAML configs.
-3. Validate canonical resume input.
-4. Validate generated Markdown outputs.
+3. Validate canonical resume input when present.
+4. Validate committed generated Markdown outputs.
 5. Run happy-path and sad-path unit tests.
 6. Run browser smoke tests.
 7. Build the static site.
+8. Optionally verify PDF assets or run PDF rendering if the renderer is deterministic and does not require model access.
 
-### Pages workflow
+The validation workflow must not require hosted model API keys.
+
+## Pages Workflow
 
 Runs on the default branch after validation:
 
-1. Build Astro.
-2. Upload static artifact.
+1. Build Astro from committed source and generated assets.
+2. Upload the static artifact.
 3. Deploy to GitHub Pages.
+
+The Pages workflow should be deterministic and should not generate new resume content. It publishes what was reviewed and merged.
 
 ## Secret Handling
 
-Hosted model API keys must use GitHub Actions secrets and should not be required to deploy the static site. Generation can be a separate manual workflow so that normal docs or site edits do not require model credentials.
+Normal validation and Pages deployment should require no model-provider secrets because generation is a manual pre-commit step.
 
-Suggested secrets:
+If a future optional workflow is added for assisted generation, it should be manually triggered, clearly separate from validation and deployment, and should use GitHub Actions secrets such as:
 
 ```text
 OPENAI_API_KEY
@@ -54,4 +85,4 @@ GOOGLE_API_KEY
 TOGETHER_API_KEY
 ```
 
-Local offline model generation should usually happen outside GitHub-hosted runners unless a self-hosted runner is available.
+Local offline model generation should happen outside GitHub-hosted runners unless a self-hosted runner is available.
