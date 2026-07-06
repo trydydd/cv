@@ -1,0 +1,22 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
+import ResumeCard from '../components/ResumeCard.astro';
+import { getGalleryResumes, loadSiteConfig } from '../lib/config';
+
+const siteConfig = loadSiteConfig();
+const resumes = getGalleryResumes();
+---
+<SiteLayout title={`Tech Gallery · ${siteConfig.site.title}`} description="Compare generated resume variants.">
+  <SiteNav />
+  <main class="container">
+    <header class="page-header">
+      <p class="kicker">Tech</p>
+      <h1 class="page-title">Resume experiment gallery</h1>
+      <p class="lede">Synthetic data for now: one gold-standard frontier resume and one local-model experiment resume. The list is driven by YAML so new variants can be added without route rewrites.</p>
+    </header>
+    <section class="gallery-grid" aria-label="Resume variants">
+      {resumes.map((resume) => <ResumeCard resume={resume} />)}
+    </section>
+  </main>
+</SiteLayout>

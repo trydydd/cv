@@ -13,6 +13,23 @@ The project compares resume outputs generated with the same source data and prom
 
 All variants use the same platform, source resume, prompt template, validation rules, and publishing pipeline.
 
+## Current Demo
+
+The first runnable version uses synthetic resume data so the hosting pipeline can be validated before real model outputs are committed:
+
+- `Everyone` routes to the YAML-configured gold-standard resume.
+- `Tech` routes to a gallery with the gold resume and one local demo experiment.
+- Resume pages, role routing, metadata, and PDF links are driven by `config/site.yaml` and `config/resumes.yaml`.
+
+## Local Development
+
+```bash
+npm install
+npm run dev
+npm test
+npm run build
+```
+
 ## Site Visitor Flow
 
 The GitHub Pages site starts with a role selector, not this README.
@@ -44,13 +61,12 @@ Dense project documentation lives in `docs/`:
 - [Testing Strategy](docs/testing.md)
 - [Deployment](docs/deployment.md)
 
-## Recommended Implementation Stack
+## Implementation Stack
 
 - TypeScript for orchestration and validation.
 - Astro for the GitHub Pages static site.
-- Tailwind CSS for responsive and print styling.
 - YAML for site routing, resume registry, model matrix, and gold-standard selection.
-- Markdown as the canonical LLM resume output.
+- Markdown as the canonical future LLM resume output.
 - HTML and PDF as rendered publication formats.
 
 ## Repository Shape
@@ -59,20 +75,16 @@ Dense project documentation lives in `docs/`:
 .
 ├── README.md
 ├── docs/
-├── inputs/
-│   ├── resume.yaml
-│   └── prompt.md
 ├── config/
 │   ├── site.yaml
-│   ├── resumes.yaml
-│   └── models.yaml
+│   └── resumes.yaml
 ├── src/
 │   ├── pages/
 │   ├── components/
 │   ├── layouts/
 │   └── lib/
-├── scripts/
-├── generated/
+├── public/resumes/
+├── tests/
 └── .github/workflows/
 ```
 

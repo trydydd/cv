@@ -1,0 +1,17 @@
+---
+import type { ResumeEntry } from '../lib/types';
+interface Props { resume: ResumeEntry; }
+const { resume } = Astro.props;
+---
+<aside class="metadata-panel" aria-labelledby="metadata-title">
+  <h2 id="metadata-title">Provenance</h2>
+  <dl class="metadata-list">
+    <div><dt>Provider</dt><dd>{resume.provider}</dd></div>
+    <div><dt>Model</dt><dd>{resume.model}</dd></div>
+    <div><dt>Tier</dt><dd>{resume.tier}</dd></div>
+    <div><dt>Prompt</dt><dd>v{resume.promptVersion}</dd></div>
+    <div><dt>Generated</dt><dd>{resume.generatedAt}</dd></div>
+    <div><dt>Resume hash</dt><dd>{resume.resumeHash}</dd></div>
+  </dl>
+  <a class="button secondary" href={resume.pdfPath}>Download PDF</a>
+</aside>

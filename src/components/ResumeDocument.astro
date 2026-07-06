@@ -1,0 +1,43 @@
+---
+import type { ResumeEntry } from '../lib/types';
+interface Props { resume: ResumeEntry; }
+const { resume } = Astro.props;
+const candidate = resume.candidate;
+---
+<article class="resume-document" aria-labelledby="resume-name">
+  <header>
+    <h1 id="resume-name">{candidate.name}</h1>
+    <p class="lede">{candidate.title}</p>
+    <p>{candidate.contact.location} · <a href={`mailto:${candidate.contact.email}`}>{candidate.contact.email}</a> · <a href={candidate.contact.website}>{candidate.contact.website}</a></p>
+  </header>
+
+  <section aria-labelledby="summary">
+    <h2 id="summary">Summary</h2>
+    <p>{candidate.summary}</p>
+  </section>
+
+  <section aria-labelledby="impact">
+    <h2 id="impact">Selected Impact</h2>
+    <ul>
+      {candidate.highlights.map((highlight) => <li>{highlight}</li>)}
+    </ul>
+  </section>
+
+  <section aria-labelledby="experience">
+    <h2 id="experience">Experience</h2>
+    {candidate.experience.map((job) => (
+      <section>
+        <h3>{job.role} · {job.company}</h3>
+        <p><strong>{job.period}</strong></p>
+        <ul>
+          {job.bullets.map((bullet) => <li>{bullet}</li>)}
+        </ul>
+      </section>
+    ))}
+  </section>
+
+  <section aria-labelledby="skills">
+    <h2 id="skills">Skills</h2>
+    <p>{candidate.skills.join(' · ')}</p>
+  </section>
+</article>

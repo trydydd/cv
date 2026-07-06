@@ -1,0 +1,13 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
+---
+<SiteLayout title="Not found · Resume Lab">
+  <SiteNav />
+  <main class="container page-header">
+    <p class="kicker">404</p>
+    <h1 class="page-title">That resume is not available.</h1>
+    <p class="lede">The resume may be disabled, missing from the registry, or not generated yet.</p>
+    <a class="button primary" href="/cv/">Return home</a>
+  </main>
+</SiteLayout>

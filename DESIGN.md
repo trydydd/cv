@@ -42,7 +42,7 @@ Recommended stack:
 
 ```css
 :root {
-  --font-sans: Geist, ui-sans-serif, system-ui, sans-serif;
+  --font-sans: Atkinson Hyperlegible, ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Source Serif 4", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
