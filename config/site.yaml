@@ -1,0 +1,13 @@
+site:
+  title: Multi-Model Resume Lab
+  description: Choose the best resume immediately or inspect model-generated variants.
+roles:
+  tech:
+    label: Tech
+    description: Compare model-generated resume variants.
+    target: gallery
+  everyone:
+    label: Everyone
+    description: View the recommended resume.
+    target: gold
+goldResumeId: frontier-gold

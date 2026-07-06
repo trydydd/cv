@@ -1,0 +1,23 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import RoleSelector from '../components/RoleSelector.astro';
+import SiteNav from '../components/SiteNav.astro';
+import { loadResumeRegistry, loadSiteConfig, validateSiteConfig } from '../lib/config';
+
+const siteConfig = loadSiteConfig();
+const registry = loadResumeRegistry();
+validateSiteConfig(siteConfig, registry);
+---
+<SiteLayout title={siteConfig.site.title} description={siteConfig.site.description}>
+  <SiteNav />
+  <main class="hero">
+    <div class="container hero-grid">
+      <section>
+        <p class="kicker">One resume source. Multiple model lenses.</p>
+        <h1>Choose the resume path that fits your curiosity.</h1>
+        <p class="lede">Most viewers should go straight to the gold-standard resume. Technical reviewers can open the lab and compare the synthetic frontier and local-model demo variants while the hosting pipeline comes online.</p>
+      </section>
+      <RoleSelector siteConfig={siteConfig} />
+    </div>
+  </main>
+</SiteLayout>
