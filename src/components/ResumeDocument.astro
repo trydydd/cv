@@ -3,41 +3,127 @@ import type { ResumeEntry } from '../lib/types';
 interface Props { resume: ResumeEntry; }
 const { resume } = Astro.props;
 const candidate = resume.candidate;
+
+// Determine structure version and normalize fields
+const isNewStructure = 'tagline' in candidate;
+const title = isNewStructure ? candidate.tagline : candidate.title;
+const hasSummary = 'summary' in candidate;
+const contactLocation = candidate.contact?.location;
+const contactEmail = candidate.contact?.email;
+const contactWebsite = candidate.contact?.website;
+const hasTopLevelHighlights = 'highlights' in candidate && Array.isArray(candidate.highlights);
+
+// For skills, check if it's an object (new structure) or array (old structure)
+const skillsIsObject = candidate.skills && typeof candidate.skills === 'object' && !Array.isArray(candidate.skills);
 ---
 <article class="resume-document" aria-labelledby="resume-name">
   <header>
     <h1 id="resume-name">{candidate.name}</h1>
-    <p class="lede">{candidate.title}</p>
-    <p>{candidate.contact.location} · <a href={`mailto:${candidate.contact.email}`}>{candidate.contact.email}</a> · <a href={candidate.contact.website}>{candidate.contact.website}</a></p>
+    <p class="lede">{title}</p>
+    <p>
+      {contactLocation && <>{contactLocation} · </>}
+      {contactEmail && <a href={`mailto:${contactEmail}`}>{contactEmail}</a>}
+      {contactEmail && contactWebsite && <> · </>}
+      {contactWebsite && <a href={contactWebsite}>{contactWebsite}</a>}
+    </p>
   </header>
 
-  <section aria-labelledby="summary">
-    <h2 id="summary">Summary</h2>
-    <p>{candidate.summary}</p>
-  </section>
+  {hasSummary && (
+    <section aria-labelledby="summary">
+      <h2 id="summary">Summary</h2>
+      <p>{candidate.summary}</p>
+    </section>
+  )}
 
-  <section aria-labelledby="impact">
-    <h2 id="impact">Selected Impact</h2>
-    <ul>
-      {candidate.highlights.map((highlight) => <li>{highlight}</li>)}
-    </ul>
-  </section>
+  {hasTopLevelHighlights && candidate.highlights && (
+    <section aria-labelledby="impact">
+      <h2 id="impact">Selected Impact</h2>
+      <ul>
+        {candidate.highlights.map((highlight) => <li>{highlight}</li>)}
+      </ul>
+    </section>
+  )}
 
-  <section aria-labelledby="experience">
-    <h2 id="experience">Experience</h2>
-    {candidate.experience.map((job) => (
-      <section>
-        <h3>{job.role} · {job.company}</h3>
-        <p><strong>{job.period}</strong></p>
-        <ul>
-          {job.bullets.map((bullet) => <li>{bullet}</li>)}
-        </ul>
-      </section>
-    ))}
-  </section>
+  {candidate.experience && (
+    <section aria-labelledby="experience">
+      <h2 id="experience">Experience</h2>
+      {candidate.experience.map((job) => (
+        <section>
+          <h3>
+            {isNewStructure ? job.title : job.role}
+            {job.company && <> · {job.company}</>}
+          </h3>
+          <p><strong>{isNewStructure ? job.dates : job.period}</strong></p>
+          {job.location && <p><em>{job.location}</em></p>}
+          <ul>
+            {(job.highlights || job.bullets)?.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+      ))}
+    </section>
+  )}
 
-  <section aria-labelledby="skills">
-    <h2 id="skills">Skills</h2>
-    <p>{candidate.skills.join(' · ')}</p>
-  </section>
+  {candidate.projects && (
+    <section aria-labelledby="projects">
+      <h2 id="projects">Projects</h2>
+      {candidate.projects.map((project) => (
+        <section>
+          <h3>{project.name}</h3>
+          {project.status && <p><em>{project.status}</em></p>}
+          {project.url && <p><a href={`https://${project.url}`}>{project.url}</a></p>}
+          {project.highlights && (
+            <ul>
+              {project.highlights.map((highlight) => <li>{highlight}</li>)}
+            </ul>
+          )}
+        </section>
+      ))}
+    </section>
+  )}
+
+  {candidate.community && (
+    <section aria-labelledby="community">
+      <h2 id="community">Community</h2>
+      {candidate.community.map((item) => (
+        <section>
+          <h3>{item.role}</h3>
+          <p><strong>{item.organization}</strong></p>
+          {item.dates && <p>{item.dates}</p>}
+          {item.url && <p><a href={`https://${item.url}`}>{item.url}</a></p>}
+          {item.highlights && (
+            <ul>
+              {item.highlights.map((highlight) => <li>{highlight}</li>)}
+            </ul>
+          )}
+        </section>
+      ))}
+    </section>
+  )}
+
+  {candidate.skills && (
+    <section aria-labelledby="skills">
+      <h2 id="skills">Skills</h2>
+      {skillsIsObject ? (
+        <div>
+          {Object.entries(candidate.skills).map(([category, skills]) => (
+            <div>
+              <h4>{category.replace(/_/g, ' ')}</h4>
+              <p>{(Array.isArray(skills) ? skills : []).join(' · ')}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>{(candidate.skills as string[]).join(' · ')}</p>
+      )}
+    </section>
+  )}
+
+  {candidate.education_and_honors && (
+    <section aria-labelledby="education">
+      <h2 id="education">Education & Honors</h2>
+      <ul>
+        {candidate.education_and_honors.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+  )}
 </article>

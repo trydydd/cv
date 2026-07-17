@@ -26,21 +26,42 @@ export interface ResumeEntry {
   pdfPath: string;
   candidate: {
     name: string;
-    title: string;
-    summary: string;
+    title?: string;
+    tagline?: string;
+    summary?: string;
     contact: {
-      location: string;
-      email: string;
-      website: string;
+      location?: string;
+      email?: string;
+      website?: string;
+      phone?: string;
+      github?: string;
     };
-    highlights: string[];
-    experience: Array<{
-      company: string;
-      role: string;
-      period: string;
-      bullets: string[];
+    highlights?: string[];
+    experience?: Array<{
+      company?: string;
+      role?: string;
+      title?: string;
+      period?: string;
+      dates?: string;
+      location?: string;
+      bullets?: string[];
+      highlights?: string[];
     }>;
-    skills: string[];
+    projects?: Array<{
+      name: string;
+      status?: string;
+      url?: string;
+      highlights?: string[];
+    }>;
+    community?: Array<{
+      role: string;
+      organization: string;
+      dates?: string;
+      url?: string;
+      highlights?: string[];
+    }>;
+    skills?: string[] | Record<string, string[]>;
+    education_and_honors?: string[];
   };
 }
 
