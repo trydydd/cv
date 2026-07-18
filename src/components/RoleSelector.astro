@@ -4,14 +4,21 @@ import { resolveRoleTarget } from '../lib/config';
 
 interface Props { siteConfig: SiteConfig; }
 const { siteConfig } = Astro.props;
-const everyoneHref = `/cv${resolveRoleTarget('everyone', siteConfig)}`;
-const techHref = `/cv${resolveRoleTarget('tech', siteConfig)}`;
+
+const entries = [
+  { role: siteConfig.roles.everyone, href: `/cv${resolveRoleTarget('everyone', siteConfig)}` },
+  { role: siteConfig.roles.tech, href: `/cv${resolveRoleTarget('tech', siteConfig)}` },
+];
 ---
-<section class="role-panel" aria-labelledby="choose-role">
-  <p class="kicker">Choose your path</p>
-  <h2 id="choose-role">Who is viewing?</h2>
-  <div class="role-actions">
-    <a class="button primary" href={everyoneHref}>{siteConfig.roles.everyone.label}</a>
-    <a class="button secondary" href={techHref}>{siteConfig.roles.tech.label}</a>
-  </div>
-</section>
+<nav class="contents" aria-label="Contents">
+  <p class="contents-heading">Contents</p>
+  {entries.map(({ role, href }) => (
+    <a class="contents-entry" href={href}>
+      <div>
+        <span class="entry-title">{role.label}</span>
+        <p class="entry-desc">{role.description}</p>
+      </div>
+      <span class="arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  ))}
+</nav>

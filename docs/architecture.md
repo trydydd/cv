@@ -22,14 +22,14 @@ flowchart LR
 
 The public site landing page is a role selector. The two selectable labels are intentionally short and stable:
 
-- `Tech`
-- `Everyone`
+- `Resume Gallery`
+- `Resume`
 
 ```mermaid
 flowchart TD
     A["/"] --> B["Role Selector"]
     B -->|Tech| C["/resumes"]
-    B -->|Everyone| D["/resume/gold"]
+    B -->|Resume| D["/resume/gold"]
     C --> E["/resume/:id"]
     D --> F[Configured Gold Standard Resume]
 ```
@@ -38,15 +38,15 @@ The labels can be displayed as buttons, segmented controls, or dropdown options,
 
 ## Gold Standard Route
 
-The `Everyone` route resolves a configured resume identifier from `config/site.yaml`. That keeps the public default resume independent of code changes.
+The `Resume` route resolves a configured resume identifier from `config/site.yaml`. That keeps the public default resume independent of code changes.
 
 ```yaml
 roles:
   everyone:
-    label: Everyone
+    label: Resume
     target: gold
   tech:
-    label: Tech
+    label: Resume Gallery
     target: gallery
 
 goldResumeId: frontier-gold
@@ -56,7 +56,7 @@ If `goldResumeId` does not match an enabled resume in `config/resumes.yaml`, the
 
 ## Tech Gallery Route
 
-The `Tech` route reads a configurable list of enabled resumes from `config/resumes.yaml`.
+The `Resume Gallery` route reads a configurable list of enabled resumes from `config/resumes.yaml`.
 
 ```yaml
 resumes:

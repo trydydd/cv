@@ -15,8 +15,8 @@ The hosting code and gold-standard resume path need happy-path and sad-path test
 
 | Area | Test |
 |---|---|
-| Role selector | `Tech` navigates to the gallery. |
-| Role selector | `Everyone` navigates to the gold resume. |
+| Role selector | `Resume Gallery` navigates to the gallery. |
+| Role selector | `Resume` navigates to the gold resume. |
 | Gold route | Configured `goldResumeId` resolves to an enabled resume. |
 | Gallery | Enabled `showInGallery` resumes appear. |
 | Gallery | Disabled resumes are hidden. |
@@ -44,7 +44,7 @@ import { resolveRoleTarget } from '../src/lib/routes';
 it('routes Everyone to the configured gold resume', () => {
   const result = resolveRoleTarget('everyone', {
     goldResumeId: 'frontier-gold',
-    roles: { everyone: { label: 'Everyone', target: 'gold' } },
+    roles: { everyone: { label: 'Resume', target: 'gold' } },
   });
 
   expect(result).toEqual('/resume/frontier-gold');
@@ -62,13 +62,13 @@ import { expect, test } from '@playwright/test';
 
 test('Everyone opens the gold resume', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Everyone' }).click();
+  await page.getByRole('button', { name: 'Resume' }).click();
   await expect(page).toHaveURL(/\/resume\/frontier-gold/);
 });
 
 test('Tech opens the configurable gallery', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Tech' }).click();
+  await page.getByRole('button', { name: 'Resume Gallery' }).click();
   await expect(page).toHaveURL(/\/resumes/);
 });
 ```

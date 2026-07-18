@@ -15,6 +15,17 @@ const hasTopLevelHighlights = 'highlights' in candidate && Array.isArray(candida
 
 // For skills, check if it's an object (new structure) or array (old structure)
 const skillsIsObject = candidate.skills && typeof candidate.skills === 'object' && !Array.isArray(candidate.skills);
+
+const SMALL_WORDS = new Set(['and', 'or', 'of', 'the', 'in', 'for']);
+const formatCategory = (category: string) =>
+  category
+    .split('_')
+    .map((word, i) => {
+      if (word === 'ai') return 'AI';
+      if (i > 0 && SMALL_WORDS.has(word)) return word;
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(' ');
 ---
 <article class="resume-document" aria-labelledby="resume-name">
   <header>
@@ -107,7 +118,7 @@ const skillsIsObject = candidate.skills && typeof candidate.skills === 'object' 
         <div>
           {Object.entries(candidate.skills).map(([category, skills]) => (
             <div>
-              <h3>{category.replace(/_/g, ' ')}</h3>
+              <h3>{formatCategory(category)}</h3>
               <ul class="skill-chip-list">
                 {(Array.isArray(skills) ? skills : []).map((skill) => <li>{skill}</li>)}
               </ul>

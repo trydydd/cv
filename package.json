@@ -12,6 +12,9 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@fontsource-variable/besley": "^5.2.8",
+    "@fontsource-variable/jetbrains-mono": "^5.2.8",
+    "@fontsource/atkinson-hyperlegible": "^5.2.8",
     "astro": "^5.11.0",
     "typescript": "^5.8.3",
     "yaml": "^2.8.0"

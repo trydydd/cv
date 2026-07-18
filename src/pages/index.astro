@@ -10,14 +10,10 @@ validateSiteConfig(siteConfig, registry);
 ---
 <SiteLayout title={siteConfig.site.title} description={siteConfig.site.description}>
   <SiteNav />
-  <main class="hero">
-    <div class="container hero-grid">
-      <section>
-        <p class="kicker">Principal Engineer · Applied AI &amp; Enterprise Platform Architecture</p>
-        <h1>Willard Hucks</h1>
-        <p class="lede">Recruiters and hiring managers: the resume is one click away. Curious how different AI models handle the same source data and prompt? Open the comparison gallery.</p>
-      </section>
-      <RoleSelector siteConfig={siteConfig} />
-    </div>
+  <main id="main" class="hero container">
+    <p class="kicker">Principal Engineer · Applied AI &amp; Enterprise Platform Architecture</p>
+    <h1 class="hero-name">Willard Hucks</h1>
+    <p class="lede">The resume is one click away. And if you're curious how different AI models handle the same source data and prompt, the gallery shows their work side by side.</p>
+    <RoleSelector siteConfig={siteConfig} />
   </main>
 </SiteLayout>

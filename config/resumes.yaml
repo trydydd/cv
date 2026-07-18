@@ -3,12 +3,12 @@ resumes:
     label: Gold Standard
     description: Recommended resume for general viewers.
     tier: frontier
-    provider: Frontier Model
-    model: frontier-v1
+    provider: Anthropic
+    model: claude-fable-5
     enabled: true
     showInGallery: true
     isGoldCandidate: true
-    generatedAt: 2026-07-06T00:00:00Z
+    generatedAt: 2026-07-18T08:38:00Z
     promptVersion: 1
     resumeHash: 5147af92a492
     pdfPath: /cv/resumes/frontier-gold.pdf

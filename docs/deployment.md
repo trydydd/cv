@@ -59,7 +59,7 @@ Minimum prompt contents:
 
 - Static-site stack: TypeScript, Astro, Tailwind CSS, YAML configuration, Markdown resume outputs, and HTML/PDF publication targets.
 - Directory structure: expected `src/`, `config/`, `inputs/`, `generated/`, `public/`, `docs/`, and workflow locations.
-- Site routing: `Everyone` routes to the configured gold-standard resume; `Tech` routes to the configurable resume gallery.
+- Site routing: `Resume` routes to the configured gold-standard resume; `Resume Gallery` routes to the configurable resume gallery.
 - Registry rules: add, remove, hide, and promote resumes through YAML configuration.
 - Testing expectations: happy-path and sad-path tests for the role selector, gold route, gallery, and resume registry validation.
 - Output expectations: files should be ready to commit, validate, build, and deploy without calling a model from CI.
