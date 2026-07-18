@@ -10,16 +10,16 @@ Configuration should make the site flexible enough to add, remove, hide, or prom
 
 ```yaml
 site:
-  title: Resume Lab
+  title: Willard Hucks
   baseUrl: https://example.github.io/cv
 
 roles:
   tech:
-    label: Tech
+    label: Resume Gallery
     description: Compare all generated versions.
     target: gallery
   everyone:
-    label: Everyone
+    label: Resume
     description: View the recommended resume.
     target: gold
 

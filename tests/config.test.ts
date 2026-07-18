@@ -12,8 +12,8 @@ import type { ResumeRegistry, SiteConfig } from '../src/lib/types';
 const siteConfig: SiteConfig = {
   site: { title: 'Test', description: 'Test site' },
   roles: {
-    tech: { label: 'Tech', description: 'Compare', target: 'gallery' },
-    everyone: { label: 'Everyone', description: 'Gold', target: 'gold' },
+    tech: { label: 'Resume Gallery', description: 'Compare', target: 'gallery' },
+    everyone: { label: 'Resume', description: 'Gold', target: 'gold' },
   },
   goldResumeId: 'frontier-gold',
 };

@@ -32,7 +32,7 @@ The brand should feel like a polished personal portfolio crossed with a reproduc
 
 ## Design Principles
 
-1. Route by intent, then disappear: `Everyone` gets the gold resume with minimum friction; `Tech` gets the lab.
+1. Route by intent, then disappear: `Resume` gets the gold resume with minimum friction; `Resume Gallery` gets the lab.
 2. Trust through provenance: make model, prompt, input, and output metadata visible where it helps decision-making.
 3. Configuration over code churn: site behavior should follow YAML registries whenever possible.
 4. Resume first, experiment second: technical sophistication should support credibility, not distract from the candidate.

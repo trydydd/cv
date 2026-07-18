@@ -1,13 +1,18 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import SiteNav from '../components/SiteNav.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<SiteLayout title="Not found · Resume Lab">
+<SiteLayout title="Not found · Willard Hucks">
   <SiteNav />
-  <main class="container page-header">
+  <main id="main" class="container page-header">
     <p class="kicker">404</p>
-    <h1 class="page-title">That resume is not available.</h1>
-    <p class="lede">The resume may be disabled, missing from the registry, or not generated yet.</p>
-    <a class="button primary" href="/cv/">Return home</a>
+    <h1 class="page-title">That page is not here.</h1>
+    <p class="lede">The resume you're looking for isn't published — it may have been renamed or retired.</p>
+    <div class="actions">
+      <a class="button primary" href={`${base}/`}>Return home</a>
+      <a class="button secondary" href={`${base}/resumes`}>Browse the gallery</a>
+    </div>
   </main>
 </SiteLayout>

@@ -2,16 +2,20 @@
 import type { ResumeEntry } from '../lib/types';
 interface Props { resume: ResumeEntry; }
 const { resume } = Astro.props;
+
+const tags = [
+  resume.tier,
+  resume.isGoldCandidate && 'gold',
+  resume.pageUrl && 'model-authored page',
+].filter(Boolean);
 ---
-<a class="resume-card" href={resume.pageUrl ?? `/cv/resume/${resume.id}`}>
-  <div class="badges">
-    <span class="badge">{resume.tier}</span>
-    {resume.isGoldCandidate && <span class="badge">gold</span>}
-    {resume.pageUrl && <span class="badge">model-authored page</span>}
-  </div>
+<a class="ledger-row" href={resume.pageUrl ?? `/cv/resume/${resume.id}`}>
   <div>
     <h2>{resume.label}</h2>
-    <p>{resume.description}</p>
+    <p class="entry-desc">{resume.description}</p>
   </div>
-  <small>{resume.provider} · {resume.model}</small>
+  <div class="ledger-meta">
+    <span class="tags">{tags.join(' · ')}</span>
+    <span>{resume.provider} · {resume.model}</span>
+  </div>
 </a>

@@ -64,14 +64,14 @@ The site has two primary modes:
 
 Recommended layout patterns:
 
-- Home: centered role selector with two short choices, `Tech` and `Everyone`.
+- Home: centered role selector with two short choices, `Resume Gallery` and `Resume`.
 - Gold resume: clean document layout, minimal surrounding chrome, obvious PDF download.
 - Tech gallery: filterable or grouped list of resume variants by tier, with model metadata visible but not overwhelming.
 - Resume detail: resume content first, metadata and provenance secondary.
 
 ## Components
 
-- `RoleSelector`: semantic two-option control or dropdown; labels are `Tech` and `Everyone`.
+- `RoleSelector`: semantic two-option control or dropdown; labels are `Resume Gallery` and `Resume`.
 - `ResumeShell`: printable resume page with HTML and PDF affordances.
 - `ResumeCard`: compact card/list row for gallery variants.
 - `ModelBadge`: small tier/provider/model marker.
@@ -80,8 +80,8 @@ Recommended layout patterns:
 
 ## Interaction
 
-- The `Everyone` action should feel immediate and primary.
-- The `Tech` action should clearly promise comparison and exploration.
+- The `Resume` action should feel immediate and primary.
+- The `Resume Gallery` action should clearly promise comparison and exploration.
 - All controls need keyboard-visible focus states using `--color-focus`.
 - Avoid decorative motion on the resume itself; subtle transitions are acceptable on role selection, gallery filtering, and metadata disclosure.
 - Respect `prefers-reduced-motion`.

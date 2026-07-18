@@ -1,12 +1,17 @@
 ---
+import { loadSiteConfig } from '../lib/config';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteConfig = loadSiteConfig();
+const resumeHref = `${base}/resume/${siteConfig.goldResumeId}`;
 const path = Astro.url.pathname;
-const isHome = path === '/cv/' || path === '/cv';
-const isTech = path.startsWith('/cv/resumes') || path.startsWith('/cv/gallery');
+const isResume = path.startsWith(`${base}/resume/`);
+const isGallery = path.startsWith(`${base}/resumes`) || path.startsWith(`${base}/gallery`);
 ---
 <nav class="site-nav container" aria-label="Primary navigation">
-  <a class="brand-mark" href={Astro.site ? new URL(Astro.url.pathname.startsWith('/cv') ? '/cv/' : '/', Astro.url).pathname : '/'}>Resume Lab</a>
+  <a class="brand-mark" href={`${base}/`}>Willard Hucks</a>
   <div class="nav-links">
-    <a href="/cv/" aria-current={isHome ? 'page' : undefined}>Home</a>
-    <a href="/cv/resumes" aria-current={isTech ? 'page' : undefined}>Tech</a>
+    <a href={resumeHref} aria-current={isResume ? 'page' : undefined}>{siteConfig.roles.everyone.label}</a>
+    <a href={`${base}/resumes`} aria-current={isGallery ? 'page' : undefined}>{siteConfig.roles.tech.label}</a>
   </div>
 </nav>
