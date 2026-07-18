@@ -4,14 +4,18 @@ import SiteNav from '../../components/SiteNav.astro';
 import ResumeDocument from '../../components/ResumeDocument.astro';
 import MetadataPanel from '../../components/MetadataPanel.astro';
 import { getEnabledResumes, getResumeById } from '../../lib/config';
+import type { StructuredResumeEntry } from '../../lib/types';
 
 export function getStaticPaths() {
-  return getEnabledResumes().map((resume) => ({ params: { id: resume.id } }));
+  return getEnabledResumes()
+    .filter((resume) => resume.candidate)
+    .map((resume) => ({ params: { id: resume.id } }));
 }
 
 const { id } = Astro.params;
-const resume = id ? getResumeById(id) : undefined;
-if (!resume) return Astro.redirect('/cv/404');
+const found = id ? getResumeById(id) : undefined;
+if (!found || !found.candidate) return Astro.redirect('/cv/404');
+const resume = found as StructuredResumeEntry;
 ---
 <SiteLayout title={`${resume.label} · Resume Lab`} description={resume.description}>
   <SiteNav />

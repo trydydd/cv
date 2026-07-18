@@ -228,6 +228,18 @@ h1 {
   .metadata-panel { position: static; }
 }
 
+@media print {
+  body { background: none; }
+  .site-nav, .metadata-panel, .page-header { display: none; }
+  .resume-layout { display: block; padding: 0; }
+  .resume-document {
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    padding: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

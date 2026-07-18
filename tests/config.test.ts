@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   getGalleryResumes,
   getGoldResume,
+  loadResumeRegistry,
   resolveRoleTarget,
   validateRoleLabel,
   validateSiteConfig,
@@ -42,6 +43,22 @@ const registry: ResumeRegistry = {
         experience: [{ company: 'Example', role: 'Engineer', period: '2020 – Present', bullets: ['Built things'] }],
         skills: ['TypeScript'],
       },
+    },
+    {
+      id: 'model-authored-demo',
+      label: 'Model Authored Demo',
+      description: 'Self-contained static page authored by a model, no shared template.',
+      tier: 'local',
+      provider: 'Example Provider',
+      model: 'example-9b',
+      enabled: true,
+      showInGallery: true,
+      isGoldCandidate: false,
+      generatedAt: '2026-07-06T00:00:00Z',
+      promptVersion: 1,
+      resumeHash: 'ghi',
+      pdfPath: '/resumes/model-authored-demo.pdf',
+      pageUrl: '/cv/gallery/example-9b/',
     },
     {
       id: 'disabled-demo',
@@ -86,7 +103,16 @@ describe('registry validation', () => {
   });
 
   it('shows only enabled gallery resumes', () => {
-    expect(getGalleryResumes(registry).map((resume) => resume.id)).toEqual(['frontier-gold']);
+    expect(getGalleryResumes(registry).map((resume) => resume.id)).toEqual([
+      'frontier-gold',
+      'model-authored-demo',
+    ]);
+  });
+
+  it('includes model-authored pageUrl resumes without requiring a candidate', () => {
+    const resume = getGalleryResumes(registry).find((r) => r.id === 'model-authored-demo');
+    expect(resume?.pageUrl).toBe('/cv/gallery/example-9b/');
+    expect(resume?.candidate).toBeUndefined();
   });
 
   it('rejects role labels longer than two words', () => {
@@ -103,5 +129,14 @@ describe('registry validation', () => {
 
   it('rejects duplicate resume ids', () => {
     expect(() => validateSiteConfig(siteConfig, { resumes: [registry.resumes[0], registry.resumes[0]] })).toThrow(/Duplicate/);
+  });
+});
+
+describe('candidateSource resolution', () => {
+  it('loads candidate data from the referenced file instead of an inline block', () => {
+    const liveRegistry = loadResumeRegistry();
+    const goldResume = liveRegistry.resumes.find((resume) => resume.id === 'frontier-gold');
+    expect(goldResume?.candidateSource).toBe('inputs/resume.yaml');
+    expect(goldResume?.candidate?.name).toBe('Willard Hucks');
   });
 });
