@@ -107,13 +107,17 @@ const skillsIsObject = candidate.skills && typeof candidate.skills === 'object' 
         <div>
           {Object.entries(candidate.skills).map(([category, skills]) => (
             <div>
-              <h4>{category.replace(/_/g, ' ')}</h4>
-              <p>{(Array.isArray(skills) ? skills : []).join(' · ')}</p>
+              <h3>{category.replace(/_/g, ' ')}</h3>
+              <ul class="skill-chip-list">
+                {(Array.isArray(skills) ? skills : []).map((skill) => <li>{skill}</li>)}
+              </ul>
             </div>
           ))}
         </div>
       ) : (
-        <p>{(candidate.skills as string[]).join(' · ')}</p>
+        <ul class="skill-chip-list">
+          {(candidate.skills as string[]).map((skill) => <li>{skill}</li>)}
+        </ul>
       )}
     </section>
   )}

@@ -1,7 +1,12 @@
+---
+const path = Astro.url.pathname;
+const isHome = path === '/cv/' || path === '/cv';
+const isTech = path.startsWith('/cv/resumes') || path.startsWith('/cv/gallery');
+---
 <nav class="site-nav container" aria-label="Primary navigation">
   <a class="brand-mark" href={Astro.site ? new URL(Astro.url.pathname.startsWith('/cv') ? '/cv/' : '/', Astro.url).pathname : '/'}>Resume Lab</a>
   <div class="nav-links">
-    <a href="/cv/">Home</a>
-    <a href="/cv/resumes">Tech</a>
+    <a href="/cv/" aria-current={isHome ? 'page' : undefined}>Home</a>
+    <a href="/cv/resumes" aria-current={isTech ? 'page' : undefined}>Tech</a>
   </div>
 </nav>
