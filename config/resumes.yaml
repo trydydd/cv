@@ -15,7 +15,7 @@ resumes:
     candidateSource: inputs/resume.yaml
   - id: qwen3-6-27b
     label: Qwen3.6 27B
-    description: Self-hosted 27B model, generated end-to-end from the shared prompt and resume source.
+    description: Dark sidebar layout with a warm accent and condensed skill tags — leans editorial.
     tier: local
     provider: Self-hosted (vllm)
     model: Qwen/Qwen3.6-27B-FP8
@@ -28,7 +28,7 @@ resumes:
     pageUrl: /cv/gallery/qwen3-6-27b/
   - id: qwen3-5-9b
     label: Qwen3.5 9B
-    description: Self-hosted 9B model, generated end-to-end from the shared prompt and resume source.
+    description: Minimal single-column layout styled like a printed letter — understated and text-forward.
     tier: local
     provider: Self-hosted (vllm)
     model: Qwen/Qwen3.5-9B

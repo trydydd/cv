@@ -16,18 +16,21 @@ const { id } = Astro.params;
 const found = id ? getResumeById(id) : undefined;
 if (!found || !found.candidate) return Astro.redirect('/cv/404');
 const resume = found as StructuredResumeEntry;
+const pageTitle = resume.isGoldCandidate ? `${resume.candidate.name} · Resume` : `${resume.label} · Resume Lab`;
 ---
-<SiteLayout title={`${resume.label} · Resume Lab`} description={resume.description}>
+<SiteLayout title={pageTitle} description={resume.description}>
   <SiteNav />
   <main class="container">
     <header class="page-header">
       {!resume.isGoldCandidate && (
-        <div class="badges">
-          <span class="badge">{resume.tier}</span>
-        </div>
+        <>
+          <div class="badges">
+            <span class="badge">{resume.tier}</span>
+          </div>
+          <p class="kicker">{resume.label}</p>
+          <p class="lede">{resume.description}</p>
+        </>
       )}
-      <p class="kicker">{resume.label}</p>
-      {!resume.isGoldCandidate && <p class="lede">{resume.description}</p>}
     </header>
     <div class="resume-layout">
       <ResumeDocument resume={resume} />
