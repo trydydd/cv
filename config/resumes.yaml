@@ -26,3 +26,16 @@ resumes:
     promptVersion: 1
     resumeHash: d721572e7af8
     pageUrl: /cv/gallery/qwen3-6-27b/
+  - id: qwen3-5-9b
+    label: Qwen3.5 9B
+    description: Self-hosted 9B model, generated end-to-end from the shared prompt and resume source.
+    tier: local
+    provider: Self-hosted (vllm)
+    model: Qwen/Qwen3.5-9B
+    enabled: true
+    showInGallery: true
+    isGoldCandidate: false
+    generatedAt: 2026-07-18T06:49:29.875Z
+    promptVersion: 1
+    resumeHash: b410628a44f6
+    pageUrl: /cv/gallery/qwen3-5-9b/
