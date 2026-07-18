@@ -1,61 +1,18 @@
 resumes:
   - id: frontier-gold
     label: Gold Standard
-    description: Synthetic frontier-authored resume for general viewers.
+    description: Recommended resume for general viewers.
     tier: frontier
-    provider: Synthetic Frontier Model
-    model: frontier-demo
+    provider: Frontier Model
+    model: frontier-v1
     enabled: true
     showInGallery: true
     isGoldCandidate: true
     generatedAt: 2026-07-06T00:00:00Z
     promptVersion: 1
-    resumeHash: synthetic-gold-demo
+    resumeHash: 5147af92a492
     pdfPath: /cv/resumes/frontier-gold.pdf
     candidateSource: inputs/resume.yaml
-  - id: local-demo
-    label: Local Demo
-    description: Synthetic low-VRAM local model experiment resume.
-    tier: local
-    provider: Offline SLM Runner
-    model: local-demo-3b-q4
-    enabled: true
-    showInGallery: true
-    isGoldCandidate: false
-    generatedAt: 2026-07-06T00:00:00Z
-    promptVersion: 1
-    resumeHash: synthetic-local-demo
-    pdfPath: /cv/resumes/local-demo.pdf
-    candidate:
-      name: Jordan Example
-      title: Platform Engineer
-      summary: Engineer focused on developer tools, automation, and dependable software delivery.
-      contact:
-        location: Remote, United States
-        email: jordan@example.com
-        website: https://example.com
-      highlights:
-        - Helps teams ship software with clearer tools and safer release paths.
-        - Works across TypeScript, Python, cloud services, and testing systems.
-      experience:
-        - company: Northstar Systems
-          role: Staff Platform Engineer
-          period: 2022 – Present
-          bullets:
-            - Supported delivery tooling and internal platform workflows.
-            - Improved service templates and release documentation.
-        - company: Atlas Labs
-          role: Senior Software Engineer
-          period: 2018 – 2022
-          bullets:
-            - Built application services and automation for product teams.
-            - Contributed to testing and operational improvements.
-      skills:
-        - TypeScript
-        - Python
-        - Developer tooling
-        - Testing
-        - Cloud systems
   - id: qwen3-6-27b
     label: Qwen3.6 27B
     description: Self-hosted 27B model, generated end-to-end from the shared prompt and resume source.

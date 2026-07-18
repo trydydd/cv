@@ -13,7 +13,7 @@ const resumes = getGalleryResumes();
     <header class="page-header">
       <p class="kicker">Tech</p>
       <h1 class="page-title">Resume experiment gallery</h1>
-      <p class="lede">Synthetic data for now: one gold-standard frontier resume and one local-model experiment resume. The list is driven by YAML so new variants can be added without route rewrites.</p>
+      <p class="lede">Resume pages generated end-to-end by different models from the same source data and prompt. The list is driven by YAML so new variants can be added without route rewrites.</p>
     </header>
     <section class="gallery-grid" aria-label="Resume variants">
       {resumes.map((resume) => <ResumeCard resume={resume} />)}
