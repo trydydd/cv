@@ -15,7 +15,14 @@ export function loadSiteConfig(): SiteConfig {
 }
 
 export function loadResumeRegistry(): ResumeRegistry {
-  return readYaml<ResumeRegistry>('config/resumes.yaml');
+  const registry = readYaml<ResumeRegistry>('config/resumes.yaml');
+  for (const resume of registry.resumes) {
+    if (resume.candidateSource) {
+      const source = readYaml<{ candidate: ResumeEntry['candidate'] }>(resume.candidateSource);
+      resume.candidate = source.candidate;
+    }
+  }
+  return registry;
 }
 
 export function validateRoleLabel(label: string): void {
