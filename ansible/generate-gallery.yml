@@ -1,0 +1,41 @@
+---
+# Batch-generates gallery resume pages: for each model in models.yml, start
+# it via the spark-vllm-docker recipe runner on the inference host, wait
+# for the OpenAI-compatible API to come up, run this repo's existing
+# generation script (which does discovery + generation + provenance badge +
+# config/resumes.yaml registration), then stop the model before moving on.
+#
+# Only one model is ever loaded at a time — this is a single-GPU box, so
+# the loop is intentionally sequential, not parallel.
+#
+# Usage:
+#   cd ansible && ansible-playbook generate-gallery.yml
+#   ansible-playbook generate-gallery.yml --limit-models qwen3-5-9b   # see README
+#
+# Requires: SSH alias `vllm-host` configured (see repo README), Ansible
+# installed locally, Node deps installed in the repo (npm install).
+
+- name: Batch-generate gallery resumes from local vLLM recipes
+  hosts: vllm_host
+  gather_facts: false
+
+  vars_files:
+    - models.yml
+
+  vars:
+    recipe_dir: /home/sevro/workspace/spark-vllm-docker
+    container_name: vllm_node
+    server_url: "http://192.168.0.214:8000"
+    repo_dir: "{{ playbook_dir }}/.."
+    # Large models can take a long time to load; poll for up to ~25 minutes.
+    health_check_retries: 75
+    health_check_delay: 20
+
+  tasks:
+    - name: Run each model's generate cycle
+      include_tasks: tasks/generate_one.yml
+      loop: "{{ models }}"
+      loop_control:
+        loop_var: model
+        label: "{{ model.resume_id }}"
+      when: limit_models is not defined or model.resume_id in (limit_models.split(','))

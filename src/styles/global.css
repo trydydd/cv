@@ -229,6 +229,13 @@ h1 {
   padding: clamp(2.5rem, 6vh, 4.5rem) 0 var(--space-xl);
 }
 
+.source-links {
+  font-family: var(--font-mono);
+  font-size: var(--text-data);
+  color: var(--ink-muted);
+  margin: var(--space-md) 0 0;
+}
+
 .page-title {
   font-family: var(--font-display);
   font-weight: 640;
@@ -387,6 +394,8 @@ h1 {
 
 .metadata-panel > .button { width: 100%; margin-bottom: var(--space-sm); }
 
+.quick-download { display: none; }
+
 .jump-list {
   display: grid;
   gap: var(--space-2xs);
@@ -485,6 +494,8 @@ h1 {
 }
 
 .site-footer p { margin: 0; }
+.colophon { display: flex; align-items: center; gap: var(--space-xs); }
+.colophon img { display: block; opacity: 0.85; }
 .site-footer a { text-decoration-color: var(--hairline); text-underline-offset: 3px; }
 .site-footer a:hover { color: var(--plum); text-decoration-color: var(--plum); }
 
@@ -499,8 +510,11 @@ h1 {
 
 @media (max-width: 820px) {
   .resume-layout { grid-template-columns: 1fr; }
-  /* Download PDF must not sink below the full document on phones. */
-  .resume-layout .metadata-panel { order: -1; position: static; }
+  /* The full metadata panel stays in normal order (after the resume) so the
+     candidate's name isn't buried; only the PDF action needs to surface early. */
+  .resume-layout .metadata-panel { position: static; }
+  .resume-layout .metadata-panel .panel-download { display: none; }
+  .quick-download { display: inline-flex; margin: 0 0 var(--space-lg); }
   .ledger-row { grid-template-columns: 1fr; }
   .contents-entry { grid-template-columns: 1fr; }
   .contents-entry .arrow { display: none; }

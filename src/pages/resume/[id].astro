@@ -30,6 +30,7 @@ const pageTitle = resume.isGoldCandidate ? `${resume.candidate.name} · Resume` 
         <p class="lede">{resume.description}</p>
       </header>
     )}
+    {resume.pdfPath && <a class="button primary quick-download" href={resume.pdfPath}>Download PDF</a>}
     <div class="resume-layout">
       <ResumeDocument resume={resume} />
       <MetadataPanel resume={resume} />

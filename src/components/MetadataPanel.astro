@@ -28,7 +28,7 @@ const promptHref = `${repo}/blob/main/inputs/prompt.md`;
 const sourceHref = `${repo}/blob/main/${resume.candidateSource ?? 'inputs/resume.yaml'}`;
 ---
 <aside class="metadata-panel" aria-label="Resume version details">
-  {resume.pdfPath && <a class="button secondary" href={resume.pdfPath}>Download PDF</a>}
+  {resume.pdfPath && <a class="button secondary panel-download" href={resume.pdfPath}>Download PDF</a>}
   {sections && sections.length > 1 && (
     <nav class="jump-list" aria-label="Jump to section">
       {sections.map((section) => <a href={`#${section.id}`}>{section.label}</a>)}
@@ -40,9 +40,9 @@ const sourceHref = `${repo}/blob/main/${resume.candidateSource ?? 'inputs/resume
       <div><dt>Provider</dt><dd>{resume.provider}</dd></div>
       <div><dt>Model</dt><dd>{resume.model}</dd></div>
       <div><dt>Tier</dt><dd>{resume.tier}</dd></div>
-      <div><dt>Prompt</dt><dd><a href={promptHref}>v{resume.promptVersion}</a></dd></div>
+      <div><dt>Prompt</dt><dd><a href={promptHref}>prompt.md</a> · v{resume.promptVersion}</dd></div>
+      <div><dt>Source data</dt><dd><a href={sourceHref}>{(resume.candidateSource ?? 'inputs/resume.yaml').split('/').pop()}</a></dd></div>
       <div><dt>Generated</dt><dd>{generated}</dd></div>
-      <div><dt>Source hash</dt><dd><a href={sourceHref}>{resume.resumeHash}</a></dd></div>
     </dl>
   </details>
 </aside>
