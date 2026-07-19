@@ -25,7 +25,10 @@ const ogImage = Astro.site ? new URL(`${base}/og.png`, Astro.site).href : `${bas
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+    <link rel="icon" href={`${base}/favicon-16.png`} sizes="16x16" type="image/png" />
+    <link rel="icon" href={`${base}/favicon-32.png`} sizes="32x32" type="image/png" />
+    <link rel="icon" href={`${base}/favicon-48.png`} sizes="48x48" type="image/png" />
+    <link rel="apple-touch-icon" href={`${base}/favicon-180.png`} />
     <link rel="preload" href={besleyWoff2} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={atkinsonWoff2} as="font" type="font/woff2" crossorigin />
     <meta property="og:title" content={title} />

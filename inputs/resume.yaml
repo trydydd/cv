@@ -42,14 +42,16 @@ candidate:
           secure tool and data access through approved containers, platforms, and
           reusable patterns rather than one-off solutions.
         - >-
-          Made and executed the build-vs-buy decision to keep LLM inference
-          in-house: built and operate local inference infrastructure (vLLM
-          serving the Qwen3 family) powering internal chat and code-generation
-          workloads for cost, latency, and data control.
-        - >-
           Designed MCP-based developer tooling (a symbol-index server) that
           reduced code-generation costs by ~70% by feeding models precise,
           governed context instead of bulk source.
+        - >-
+          Maintain and operate internally-hosted LLM inference infrastructure
+          (vLLM) at enterprise scale, serving internal chat and
+          code-generation workloads.
+        - >-
+          Built the framework for enterprise Microsoft Copilot adoption,
+          including Copilot Cowork and Copilot Studio.
         - >-
           Multiply teams through architecture reviews, reusable patterns, and
           mentorship across engineering organizations.
