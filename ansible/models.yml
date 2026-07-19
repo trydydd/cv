@@ -26,3 +26,23 @@ models:
     recipe: openai-gpt-oss-20b
     label: "GPT-OSS 20B"
     tier: local
+
+  - resume_id: gemma4-26b-a4b
+    recipe: gemma4-26b-a4b
+    label: "Gemma4 26B-A4B"
+    tier: local
+
+  - resume_id: gemma4-12b
+    recipe: gemma4-12b
+    label: "Gemma4 12B"
+    tier: local
+
+  - resume_id: nemotron-3-nano-nvfp4
+    recipe: nemotron-3-nano-nvfp4
+    label: "Nemotron-3 Nano NVFP4"
+    tier: local
+
+  - resume_id: gemma4-e2b
+    recipe: gemma4-e2b
+    label: "Gemma4 E2B"
+    tier: local

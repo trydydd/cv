@@ -21,15 +21,18 @@
 //   --description <text>   Gallery card description
 //   --tier <tier>           frontier | hosted | local | baseline (default: local)
 //   --provider <text>      Overrides the discovered provider label
-//   --temperature <number>  (default: 0.3)
+//   --temperature <number>  Omitted by default — the server/model's own default sampling applies
 //   --max-tokens <number>   (default: 8000)
-//   --timeout <ms>          Generation request timeout (default: 300000)
+//   --timeout <ms>          Generation request timeout (default: 1200000 — some
+//                           models/backends generate well under 10 tok/s on this
+//                           hardware; a full ~2.3K-token prompt + ~4K-token
+//                           response has been measured taking ~9 minutes)
 
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import YAML from 'yaml';
-import { discoverHostedModel, generateChatCompletion } from './lib/model-server.mjs';
+import { discoverHostedModel, generateChatCompletion, resolveSamplingParams } from './lib/model-server.mjs';
 import { injectProvenanceBadge } from './lib/provenance-badge.mjs';
 
 const root = process.cwd();
@@ -43,9 +46,8 @@ function parseArgs(argv) {
   const options = {
     server: 'http://192.168.0.214:8000',
     tier: 'local',
-    temperature: 0.3,
     maxTokens: 8000,
-    timeout: 300_000,
+    timeout: 1_200_000,
   };
   const flagMap = {
     '--server': (v) => (options.server = v),
@@ -108,12 +110,31 @@ async function main() {
   const { version: promptVersion, body: promptBody } = readPromptTemplate();
   const prompt = promptBody.replace('{{ resume_yaml }}', resumeYaml.trim());
 
+  console.log('Resolving effective sampling parameters...');
+  const { params: samplingParams, effectiveMaxTokens, promptTokenCount, clamped } = await resolveSamplingParams(
+    options.server,
+    { modelId: hosted.id, prompt, temperature: options.temperature, maxTokens: options.maxTokens },
+  );
+  console.log(`Sampling: ${JSON.stringify(samplingParams)}`);
+  if (clamped) {
+    console.log(
+      `Note: requested --max-tokens ${options.maxTokens} exceeds this model's remaining context ` +
+        `(prompt is ${promptTokenCount} tokens); using ${effectiveMaxTokens} instead.`,
+    );
+  }
+  if (typeof effectiveMaxTokens === 'number' && effectiveMaxTokens < 512) {
+    throw new Error(
+      `Only ${effectiveMaxTokens} tokens remain for the response after a ${promptTokenCount}-token prompt — ` +
+        `this model's context window is too small to fit inputs/resume.yaml + inputs/prompt.md and produce a full page.`,
+    );
+  }
+
   console.log('Requesting generation (this can take a while for larger models)...');
   const rawOutput = await generateChatCompletion(options.server, {
     modelId: hosted.id,
     prompt,
     temperature: options.temperature,
-    maxTokens: options.maxTokens,
+    maxTokens: effectiveMaxTokens,
     timeoutMs: options.timeout,
   });
 
@@ -147,6 +168,7 @@ async function main() {
     generatedAt: new Date().toISOString(),
     promptVersion,
     resumeHash,
+    samplingParams,
     pageUrl: `/cv/gallery/${id}/`,
   });
   console.log(`Updated config/resumes.yaml with id "${id}".`);

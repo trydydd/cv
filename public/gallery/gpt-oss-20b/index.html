@@ -2,233 +2,165 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Willard Hucks – Principal Engineer • Applied AI & Enterprise Platform Architecture</title>
+<title>Willard Hucks - Resume</title>
 <style>
-body{font-family:Arial,Helvetica,sans-serif;line-height:1.6;color:#333;background:#f9f9f9;margin:0;padding:0;}
-.container{max-width:800px;margin:2rem auto;padding:1rem;background:#fff;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,.1);}
-header{border-bottom:2px solid #e0e0e0;padding-bottom:1rem;margin-bottom:1.5rem;}
-header h1{margin:0;font-size:2rem;}
-header h2{margin:0.2rem 0 0.8rem;color:#555;font-size:1.2rem;}
-header .contact a{color:#0066cc;text-decoration:none;margin-right:1rem;}
+body{font-family:"Helvetica Neue","Helvetica","Arial",sans-serif;line-height:1.6;margin:0;padding:0;background:#fafafa;color:#111;}
+.container{max-width:800px;margin:auto;padding:2rem;box-sizing:border-box;background:#fff;}
+header{border-bottom:3px solid #005688;padding-bottom:1rem;margin-bottom:2rem;}
+header h1{margin:0;font-size:2.5rem;color:#005688;}
+header p{margin:0.5rem 0;font-size:1.1rem;color:#333;}
+header .contact a{color:#005688;text-decoration:none;}
 header .contact a:hover{text-decoration:underline;}
-section{margin-bottom:1.5rem;}
-section h3{margin:0 0 0.5rem;font-size:1.3rem;color:#222;}
-section h4{margin:0 0 0.3rem;font-size:1.1rem;color:#444;}
-ul{margin:0 0 0.5rem 1.5rem;padding:0;}
-ul li{margin-bottom:0.4rem;}
-.skills{display:flex;flex-wrap:wrap;gap:1rem;}
-.skills .category{flex:1 1 45%;min-width:200px;}
-.skills .category h4{margin:0 0 0.4rem;font-size:1.1rem;color:#444;}
-.skills .category ul{margin:0;padding:0 0 0 1.2rem;}
-.education{list-style:none;padding:0;margin:0;}
-.education li{margin-bottom:0.6rem;}
-footer{font-size:0.9rem;color:#777;text-align:center;padding-top:1rem;border-top:1px solid #e0e0e0;}
-a{color:#0066cc;}
-a:hover{text-decoration:underline;}
+section{margin-bottom:2rem;}
+section h2{font-size:1.75rem;color:#005688;margin-bottom:0.75rem;border-bottom:1px solid #ddd;padding-bottom:0.25rem;}
+ul{list-style:none;padding-left:0;margin-top:0;}
+ul li{margin-bottom:0.5rem;}
+ul.bullets li:before{content:"•";color:#005688;margin-right:0.5rem;}
+h3{font-size:1.5rem;margin-top:1.5rem;margin-bottom:0.5rem;color:#005688;}
+dl{display:flex;flex-wrap:wrap;}
+dl dt{width:30%;font-weight:bold;}
+dl dd{width:70%;margin:0 0 0.5rem 0;}
+@media(max-width:600px){header h1{font-size:2rem;} h2{font-size:1.5rem;} dl dt{width:100%;} dl dd{width:100%;margin-left:0;} }
 </style>
 </head>
 <body>
 <div class="container">
 <header>
 <h1>Willard Hucks</h1>
-<h2>Principal Engineer • Applied AI & Enterprise Platform Architecture</h2>
-<div class="contact">
-<a href="mailto:hire-me@willardhucks.com">hire-me@willardhucks.com</a>
-<a href="https://github.com/trydydd" target="_blank">github.com/trydydd</a>
-</div>
+<p class="tagline">Principal Engineer · Enterprise Systems Engineering</p>
+<p class="contact">
+<strong>Location:</strong> McMinnville, Oregon<br>
+<strong>Email:</strong> <a href="mailto:hire-me@willardhucks.com">hire-me@willardhucks.com</a><br>
+<strong>GitHub:</strong> <a href="https://github.com/trydydd" target="_blank">github.com/trydydd</a>
+</p>
 </header>
 
-<section>
-<h3>Summary</h3>
-<p>Principal engineer with 14 years across infrastructure, DevOps, and platform architecture, now leading applied AI at enterprise scale — local LLM inference (vLLM), agentic and MCP-based systems, governed RAG, and AI cost optimization. Sets direction for model selection, evaluation, and responsible AI governance while staying hands‑on; track record of architecting provider‑agnostic platforms and multiplying the teams around them.</p>
+<section id="summary">
+<h2>Summary</h2>
+<p>Principal engineer with 14 years across infrastructure, DevOps, and platform architecture, now leading applied AI at enterprise scale: local LLM inference (vLLM), agentic and MCP-based systems, governed RAG, and AI cost optimization. Sets direction for model selection, evaluation, and responsible AI consumption while staying hands‑on; track record of architecting provider‑agnostic platforms and multiplying the teams around them.</p>
 </section>
 
-<section>
-<h3>Experience</h3>
+<section id="highlights">
+<h2>Highlights</h2>
+<ul class="bullets">
+<li>Designed MCP‑based developer tooling that cut code analysis costs ~70% by feeding models precise, governed context instead of bulk source.</li>
+<li>Architected a schema‑as‑guardrails platform that lets citizen developers generate code safely to company specification, enforcing secure tool and data access through approved containers and reusable patterns instead of one‑off solutions.</li>
+</ul>
+</section>
 
-<article>
-<h4>Principal Engineer, Enterprise Systems Engineering</h4>
-<p>Nike, Inc. – Beaverton, OR | Nov 2021 – Present</p>
-<ul>
+<section id="experience">
+<h2>Experience</h2>
+
+<h3>Principal Engineer, Enterprise Systems Engineering</h3>
+<p><strong>Nike, Inc.</strong> – Beaverton, OR | <em>Nov 2021 – Present</em></p>
+<ul class="bullets">
 <li>Set enterprise direction for applied AI practices: model selection, retrieval strategy, evaluation and experimentation, MLOps, and responsible AI and model governance for production use.</li>
-<li>Architecting a schema-as-guardrails platform that lets citizen developers generate code to company specification safely — enforcing secure tool and data access through approved containers, platforms, and reusable patterns rather than one-off solutions.</li>
-<li>Made and executed the build‑vs‑buy decision to keep LLM inference in‑house: built and operate local inference infrastructure (vLLM serving the Qwen3 family) powering internal chat and code‑generation workloads for cost, latency, and data control.</li>
-<li>Designed MCP‑based developer tooling (a symbol‑index server) that reduced code‑generation costs by ~70% by feeding models precise, governed context instead of bulk source.</li>
-<li>Multiply teams through architecture reviews, reusable patterns, and mentorship across engineering organizations.</li>
+<li>Architected a schema‑as‑guardrails platform that lets citizen developers generate code to company specification safely, enforcing secure tool and data access through approved containers, platforms, and reusable patterns rather than one‑off solutions.</li>
+<li>Designed MCP‑based developer tooling (a symbol‑index server) that reduced code analysis costs by ~70% by feeding models precise, governed context instead of bulk source.</li>
+<li>Maintained and operated internally‑hosted LLM inference infrastructure (vLLM) at enterprise scale, serving internal chat and code‑generation workloads.</li>
+<li>Built the framework for enterprise Microsoft Copilot adoption, including Copilot Cowork and Copilot Studio.</li>
+<li>Multiplied teams through architecture reviews, reusable patterns, and mentorship across engineering organizations.</li>
 </ul>
-</article>
 
-<article>
-<h4>Senior Engineering Manager</h4>
-<p>Nike, Inc. – Beaverton, OR | Mar 2018 – Nov 2021</p>
-<ul>
+<h3>Senior Engineering Manager</h3>
+<p><strong>Nike, Inc.</strong> – Beaverton, OR | <em>Mar 2018 – Nov 2021</em></p>
+<ul class="bullets">
 <li>Led the Release Engineering Core team (6 developers, systems engineers, and architects) and its Agile process; owned the global retail release platform.</li>
-<li>Spearheaded quality efforts for high-demand ("high‑heat") sneaker releases; founded an internal engineer training initiative to grow team capability.</li>
+<li>Spearheaded quality efforts for high‑demand ("high‑heat") sneaker releases; founded an internal engineer training initiative to grow team capability.</li>
 </ul>
-</article>
 
-<article>
-<h4>Lead DevOps Engineer</h4>
-<p>Nike, Inc. – Beaverton, OR | Apr 2017 – Mar 2018</p>
-<ul>
+<h3>Lead DevOps Engineer</h3>
+<p><strong>Nike, Inc.</strong> – Beaverton, OR | <em>Apr 2017 – Mar 2018</em></p>
+<ul class="bullets">
 <li>Architected a containerized, cloud‑provider‑agnostic global release management platform (Azure, AWS, and datacenter deployments) and handed it off cleanly to the owning team.</li>
 <li>Designed a global package distribution system that cut deployment time from 9 days to 1 hour, removing an infrastructure bottleneck and raising release velocity.</li>
 </ul>
-</article>
 
-<article>
-<h4>DevOps Engineer</h4>
-<p>Nike, Inc. – Beaverton, OR | Aug 2015 – Apr 2017</p>
-<ul>
+<h3>DevOps Engineer</h3>
+<p><strong>Nike, Inc.</strong> – Beaverton, OR | <em>Aug 2015 – Apr 2017</em></p>
+<ul class="bullets">
 <li>Designed a global retail testing methodology (Ansible + Nutanix) that reduced lab creation from 1 week to 1 hour and release testing from two weeks to under one business day.</li>
 <li>Used infrastructure‑as‑code to guarantee test‑environment integrity; helped other teams automate daily work with Ansible and Python.</li>
 </ul>
-</article>
 
-<article>
-<h4>Service Virtualization Engineer</h4>
-<p>Nike, Inc. – Beaverton, OR | Jan 2015 – Aug 2015</p>
-<ul>
+<h3>Service Virtualization Engineer</h3>
+<p><strong>Nike, Inc.</strong> – Beaverton, OR | <em>Jan 2015 – Aug 2015</em></p>
+<ul class="bullets">
 <li>Built company‑wide CA Service Virtualization training and processes, eliminating ~$1M/month in infrastructure spend.</li>
 </ul>
-</article>
 
-<article>
-<h4>Systems Administrator</h4>
-<p>Performance Health Technology – Salem, OR | Mar 2014 – Jan 2015</p>
-<ul>
+<h3>Systems Administrator</h3>
+<p><strong>Performance Health Technology</strong> – Salem, OR | <em>Mar 2014 – Jan 2015</em></p>
+<ul class="bullets">
 <li>Maintained the company datacenter (Nutanix Acropolis, Meraki networking, Nagios) and mentored junior administrators and developers.</li>
 </ul>
-</article>
 
-<article>
-<h4>Helpdesk Manager</h4>
-<p>Allegheny Technologies Incorporated – Albany, OR | Oct 2012 – Mar 2014</p>
-<ul>
+<h3>Helpdesk Manager</h3>
+<p><strong>Allegheny Technologies Incorporated</strong> – Albany, OR | <em>Oct 2012 – Mar 2014</em></p>
+<ul class="bullets">
 <li>Supported 2,000+ end users across 5 remote sites; built and deployed systems; mentored technicians and interns.</li>
 </ul>
-</article>
 
-<article>
-<h4>Armory Chief</h4>
-<p>United States Marine Corps – Jacksonville, NC | Jan 2009 – Oct 2012</p>
-<ul>
+<h3>Armory Chief</h3>
+<p><strong>United States Marine Corps</strong> – Jacksonville, NC | <em>Jan 2009 – Oct 2012</em></p>
+<ul class="bullets">
 <li>Accountable for $19M in weaponry and electronics; developed and delivered training to 40,000+ Marines; mentored 15 junior Marines into leadership roles.</li>
 </ul>
-</article>
 </section>
 
-<section>
-<h3>Projects</h3>
+<section id="projects">
+<h2>Projects</h2>
 
-<article>
-<h4>Synaptic Drift — governed context retrieval for LLM agents</h4>
-<p>Status: open source · in active development | <a href="https://github.com/trydydd/synaptic-drift" target="_blank">github.com/trydydd/synaptic-drift</a></p>
-<ul>
+<h3>Synaptic Drift: governed context retrieval for LLM agents</h3>
+<p><em>open source · in active development</em></p>
+<ul class="bullets">
 <li>Retrieval‑augmented generation (RAG) system serving verifiable, governed context to agents over MCP with schema‑enforced tool contracts; ~80% token reduction on documentation/context retrieval in testing to date.</li>
-<li>Validated by end‑to‑end task success — building working functionality against live, unseen library docs using a 9B model, so retrieval quality couldn't be masked by model capability. Sub‑21ms P95; cryptographic content verification and lifecycle governance.</li>
+<li>Validated by end‑to‑end task success: building working functionality against live, unseen library docs using a 9B model, so retrieval quality couldn't be masked by model capability. Sub‑21 ms P95; cryptographic content verification and lifecycle governance.</li>
 </ul>
-</article>
+<p><a href="https://github.com/trydydd/synaptic-drift" target="_blank">github.com/trydydd/synaptic-drift</a></p>
 
-<article>
-<h4>GPT‑2‑class language model, pretrained from scratch</h4>
-<p>Status: personal</p>
-<ul>
-<li>Trained a GPT‑2‑equivalent model end‑to‑end (children's stories) to work through the full pretraining stack first‑hand.</li>
+<h3>Vamp: schema‑as‑guardrails platform for citizen developers</h3>
+<p><em>personal · in active development</em></p>
+<ul class="bullets">
+<li>Lets citizen developers write and ship code to company specification safely, enforcing secure tool and data access through schema‑defined guardrails instead of manual review.</li>
 </ul>
-</article>
 </section>
 
-<section>
-<h3>Community</h3>
+<section id="community">
+<h2>Community</h2>
 
-<article>
-<h4>Cofounder – Oak Swale Acres</h4>
-<p>2018 – Present | <a href="https://instagram.com/oakswaleacres" target="_blank">instagram.com/oakswaleacres</a></p>
-<ul>
-<li>Family farm investing in community food security; raise livestock and donate 300–400 lbs of meat annually to local food pantries and individuals in need.</li>
+<h3>Cofounder, Oak Swale Acres</h3>
+<p><em>2018 – Present</em> | <a href="https://instagram.com/oakswaleacres" target="_blank">instagram.com/oakswaleacres</a></p>
+<ul class="bullets">
+<li>Family farm investing in community food security; raise livestock and donate 300–400 lbs of meat annually to local food pantries and individuals in need.</li>
 </ul>
-</article>
 
-<article>
-<h4>Founder – Slime Mold Grappling Club</h4>
-<p>2023 – Present | <a href="https://slimemoldgrappling.com" target="_blank">slimemoldgrappling.com</a></p>
-<ul>
+<h3>Founder, Slime Mold Grappling Club</h3>
+<p><em>2023 – Present</em> | <a href="https://slimemoldgrappling.com" target="_blank">slimemoldgrappling.com</a></p>
+<ul class="bullets">
 <li>Publish free, structured submission‑grappling curriculum and coaching resources; donate equipment and consultation to clubs that don't charge dues.</li>
 </ul>
-</article>
 </section>
 
-<section>
-<h3>Skills</h3>
-<div class="skills">
-<div class="category">
-<h4>Applied AI</h4>
-<ul>
-<li>Large language models (LLMs)</li>
-<li>Agentic and multi‑agent systems</li>
-<li>Model Context Protocol (MCP)</li>
-<li>Retrieval‑augmented generation (RAG)</li>
-<li>LLM inference serving (vLLM)</li>
-<li>Model evaluation & experimentation</li>
-<li>Prompt & guardrail design</li>
-<li>Cost optimization & inference efficiency</li>
-<li>Responsible AI & model governance</li>
-<li>MLOps</li>
-<li>Model pretraining</li>
-</ul>
-</div>
-<div class="category">
-<h4>Architecture & Leadership</h4>
-<ul>
-<li>Enterprise AI architecture</li>
-<li>Platform architecture</li>
-<li>Build‑vs‑buy analysis</li>
-<li>Technical direction & standards</li>
-<li>Mentorship</li>
-<li>Cross‑functional collaboration</li>
-<li>Risk management</li>
-<li>Agile</li>
-</ul>
-</div>
-<div class="category">
-<h4>Languages</h4>
-<ul>
-<li>Python</li>
-<li>Bash</li>
-<li>PowerShell</li>
-</ul>
-</div>
-<div class="category">
-<h4>Platforms & Infra</h4>
-<ul>
-<li>Azure</li>
-<li>AWS</li>
-<li>Docker</li>
-<li>Datacenter</li>
-<li>Nutanix</li>
-<li>Ansible</li>
-<li>Jenkins</li>
-<li>Git/BitBucket</li>
-<li>CI/CD</li>
-<li>Infrastructure‑as‑Code</li>
-</ul>
-</div>
-</div>
+<section id="skills">
+<h2>Skills</h2>
+<dl>
+<dt>Applied AI</dt><dd>Large language models (LLMs), Agentic and multi‑agent systems, Model Context Protocol (MCP), Retrieval‑augmented generation (RAG), LLM inference serving (vLLM), Model evaluation & experimentation, Prompt & guardrail design, Cost optimization & inference efficiency, Responsible AI & model governance, MLOps, Model pretraining</dd>
+<dt>Architecture & Leadership</dt><dd>Enterprise AI architecture, Platform architecture, Build‑vs‑buy analysis, Technical direction & standards, Mentorship, Cross‑functional collaboration, Risk management, Agile</dd>
+<dt>Languages</dt><dd>Python, Bash, PowerShell</dd>
+<dt>Platforms & Infra</dt><dd>Azure, AWS, Docker, Kubernetes, Datacenter, Nutanix, Ansible, Jenkins, Git/BitBucket, CI/CD, Infrastructure‑as‑Code</dd>
+</dl>
 </section>
 
-<section>
-<h3>Education & Honors</h3>
-<ul class="education">
-<li>B.A., Thomas Jefferson State University (2024)</li>
+<section id="education">
+<h2>Education & Honors</h2>
+<ul class="bullets">
+<li>B.A., Thomas Edison State University (2024)</li>
 <li>A.S., University of South Carolina (2006–2008)</li>
 <li>Navy and Marine Corps Achievement Medal</li>
 </ul>
 </section>
 
-<footer>
-<p>© 2026 Willard Hucks</p>
-</footer>
 </div>
 
 <div id="rlab-provenance-badge">
