@@ -1,0 +1,63 @@
+---
+- name: "[{{ model.resume_id }}] Full generate cycle"
+  block:
+    - name: "[{{ model.resume_id }}] Refuse to start if a model container is already running"
+      ansible.builtin.command:
+        cmd: "docker ps -q -f name=^{{ container_name }}$"
+      register: existing_container
+      changed_when: false
+
+    - name: "[{{ model.resume_id }}] Fail if container name is already in use"
+      ansible.builtin.fail:
+        msg: >-
+          Container '{{ container_name }}' is already running on vllm-host.
+          Stop it manually (ssh vllm-host docker stop {{ container_name }})
+          before running this playbook.
+      when: existing_container.stdout | trim | length > 0
+
+    - name: "[{{ model.resume_id }}] Start recipe {{ model.recipe }} (daemon mode)"
+      ansible.builtin.command:
+        cmd: "./run-recipe.sh {{ model.recipe }} --solo -d"
+        chdir: "{{ recipe_dir }}"
+
+    - name: "[{{ model.resume_id }}] Wait for the vLLM server to report healthy"
+      ansible.builtin.uri:
+        url: "{{ server_url }}/v1/models"
+        status_code: 200
+        timeout: 10
+      register: health
+      until: health.status == 200
+      retries: "{{ health_check_retries }}"
+      delay: "{{ health_check_delay }}"
+      delegate_to: localhost
+
+    - name: "[{{ model.resume_id }}] Generate gallery page"
+      ansible.builtin.command:
+        argv:
+          - node
+          - scripts/generate-gallery-page.mjs
+          - "{{ model.resume_id }}"
+          - --server
+          - "{{ server_url }}"
+          - --label
+          - "{{ model.label }}"
+          - --tier
+          - "{{ model.tier | default('local') }}"
+      args:
+        chdir: "{{ repo_dir }}"
+      delegate_to: localhost
+
+  rescue:
+    - name: "[{{ model.resume_id }}] Generation failed — logging and continuing to next model"
+      ansible.builtin.debug:
+        msg: >-
+          {{ model.resume_id }} failed: {{ ansible_failed_result.msg
+          | default(ansible_failed_result.stderr)
+          | default('unknown error') }}
+
+  always:
+    - name: "[{{ model.resume_id }}] Stop model container"
+      ansible.builtin.command:
+        cmd: "docker stop {{ container_name }}"
+        chdir: "{{ recipe_dir }}"
+      ignore_errors: true

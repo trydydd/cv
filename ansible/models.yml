@@ -1,0 +1,28 @@
+# Gallery model roster. Add an entry here to include a model in the next
+# batch run — no playbook changes needed.
+#
+# resume_id: id used in config/resumes.yaml and the /gallery/<id>/ path.
+# recipe:    recipe filename (without .yaml) in spark-vllm-docker/recipes/.
+# label:     gallery card title.
+# tier:      frontier | hosted | local | baseline (see docs/configuration.md).
+#
+# `description` is intentionally omitted: it's a qualitative read of the
+# actual rendered output (layout, tone), which can only be judged after
+# seeing what a given run produced. Leave it out here and do a short
+# follow-up review pass to set it per-model once generation finishes —
+# the script falls back to a generic default in the meantime.
+models:
+  - resume_id: qwen3-6-27b
+    recipe: qwen3.6-27b-fp8
+    label: "Qwen3.6 27B"
+    tier: local
+
+  - resume_id: qwen3-5-9b
+    recipe: qwen3.5-9b
+    label: "Qwen3.5 9B"
+    tier: local
+
+  - resume_id: gpt-oss-20b
+    recipe: openai-gpt-oss-20b
+    label: "GPT-OSS 20B"
+    tier: local
