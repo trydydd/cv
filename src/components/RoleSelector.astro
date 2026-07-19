@@ -6,14 +6,14 @@ interface Props { siteConfig: SiteConfig; }
 const { siteConfig } = Astro.props;
 
 const entries = [
-  { role: siteConfig.roles.everyone, href: `/cv${resolveRoleTarget('everyone', siteConfig)}` },
-  { role: siteConfig.roles.tech, href: `/cv${resolveRoleTarget('tech', siteConfig)}` },
+  { role: siteConfig.roles.everyone, href: `/cv${resolveRoleTarget('everyone', siteConfig)}`, primary: true },
+  { role: siteConfig.roles.tech, href: `/cv${resolveRoleTarget('tech', siteConfig)}`, primary: false },
 ];
 ---
 <nav class="contents" aria-label="Contents">
   <p class="contents-heading">Contents</p>
-  {entries.map(({ role, href }) => (
-    <a class="contents-entry" href={href}>
+  {entries.map(({ role, href, primary }) => (
+    <a class:list={['contents-entry', { primary }]} href={href}>
       <div>
         <span class="entry-title">{role.label}</span>
         <p class="entry-desc">{role.description}</p>

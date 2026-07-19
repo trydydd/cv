@@ -13,14 +13,14 @@ const resumes = getGalleryResumes();
     <header class="page-header">
       <p class="kicker">Gallery</p>
       <h1 class="page-title">Resume experiment gallery</h1>
-      <p class="lede">Same source data. Same prompt. Different models. Each entry below is a complete resume page authored end-to-end by the model it names — compare what each one shipped.</p>
+      <p class="lede">Same source data. Same prompt. Different models. Each entry below is a complete resume page authored end-to-end by the model it names, so you can compare what each one shipped.</p>
     </header>
     {resumes.length > 0 ? (
       <section class="ledger" aria-label="Resume variants">
         {resumes.map((resume) => <ResumeCard resume={resume} />)}
       </section>
     ) : (
-      <p class="lede">No resume variants are published right now — the gold-standard resume is still one click away on the home page.</p>
+      <p class="lede">No resume variants are published right now. The gold-standard resume is still one click away on the home page.</p>
     )}
   </main>
 </SiteLayout>
