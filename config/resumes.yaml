@@ -15,7 +15,7 @@ resumes:
     candidateSource: inputs/resume.yaml
   - id: qwen3-6-27b
     label: Qwen3.6 27B
-    description: Dark sidebar layout with a warm accent and condensed skill tags — leans editorial.
+    description: Dark sidebar layout with a warm accent and condensed skill tags, leaning editorial. Every role and project from the source data survives intact; the variation is purely presentational.
     tier: local
     provider: Self-hosted (vllm)
     model: Qwen/Qwen3.6-27B-FP8
@@ -28,7 +28,7 @@ resumes:
     pageUrl: /cv/gallery/qwen3-6-27b/
   - id: qwen3-5-9b
     label: Qwen3.5 9B
-    description: Minimal single-column layout styled like a printed letter — understated and text-forward.
+    description: Minimal single-column layout styled like a printed letter, understated and text-forward. Full content fidelity, nothing added or dropped.
     tier: local
     provider: Self-hosted (vllm)
     model: Qwen/Qwen3.5-9B
@@ -39,3 +39,16 @@ resumes:
     promptVersion: 1
     resumeHash: b410628a44f6
     pageUrl: /cv/gallery/qwen3-5-9b/
+  - id: gpt-oss-20b
+    label: GPT-OSS 20B
+    description: Conservative single-column sheet with default sans type and two-column skill lists. Reads corporate and safe, and matches the source data in full.
+    tier: local
+    provider: Self-hosted (vllm)
+    model: openai/gpt-oss-20b
+    enabled: true
+    showInGallery: true
+    isGoldCandidate: false
+    generatedAt: 2026-07-18T17:22:00.810Z
+    promptVersion: 1
+    resumeHash: 89cf149ab946
+    pageUrl: /cv/gallery/gpt-oss-20b/

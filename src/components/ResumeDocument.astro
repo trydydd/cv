@@ -8,9 +8,13 @@ const candidate = resume.candidate;
 const isNewStructure = 'tagline' in candidate;
 const title = isNewStructure ? candidate.tagline : candidate.title;
 const hasSummary = 'summary' in candidate;
-const contactLocation = candidate.contact?.location;
-const contactEmail = candidate.contact?.email;
-const contactWebsite = candidate.contact?.website;
+const contact = candidate.contact ?? {};
+const contactParts = [
+  contact.location && { text: contact.location },
+  contact.email && { text: contact.email, href: `mailto:${contact.email}` },
+  contact.github && { text: contact.github, href: `https://${contact.github}` },
+  contact.website && { text: contact.website, href: contact.website },
+].filter((part): part is { text: string; href?: string } => Boolean(part));
 const hasTopLevelHighlights = 'highlights' in candidate && Array.isArray(candidate.highlights);
 
 // For skills, check if it's an object (new structure) or array (old structure)
@@ -31,11 +35,13 @@ const formatCategory = (category: string) =>
   <header>
     <h1 id="resume-name">{candidate.name}</h1>
     <p class="lede">{title}</p>
-    <p>
-      {contactLocation && <>{contactLocation} · </>}
-      {contactEmail && <a href={`mailto:${contactEmail}`}>{contactEmail}</a>}
-      {contactEmail && contactWebsite && <> · </>}
-      {contactWebsite && <a href={contactWebsite}>{contactWebsite}</a>}
+    <p class="contact-line">
+      {contactParts.map((part, i) => (
+        <>
+          {i > 0 && ' · '}
+          {part.href ? <a href={part.href}>{part.text}</a> : part.text}
+        </>
+      ))}
     </p>
   </header>
 
@@ -64,8 +70,7 @@ const formatCategory = (category: string) =>
             {isNewStructure ? job.title : job.role}
             {job.company && <> · {job.company}</>}
           </h3>
-          <p><strong>{isNewStructure ? job.dates : job.period}</strong></p>
-          {job.location && <p><em>{job.location}</em></p>}
+          <p class="job-meta"><strong>{isNewStructure ? job.dates : job.period}</strong>{job.location && <> · {job.location}</>}</p>
           <ul>
             {(job.highlights || job.bullets)?.map((item) => <li>{item}</li>)}
           </ul>

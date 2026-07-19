@@ -81,7 +81,7 @@ a:focus-visible, button:focus-visible {
   outline-offset: 3px;
 }
 
-::selection { background: var(--wash); }
+::selection { background: var(--plum); color: var(--sheet); }
 
 .container {
   width: min(1060px, calc(100% - 40px));
@@ -220,6 +220,9 @@ h1 {
 .contents-entry:hover .entry-title { color: var(--plum); }
 .contents-entry:hover .arrow { transform: translateX(6px); color: var(--plum); }
 
+.contents-entry.primary .entry-title { font-size: calc(var(--text-entry) * 1.2); }
+.contents-entry.primary { padding-block: calc(var(--space-lg) * 1.35); }
+
 /* ---------- Page headers ---------- */
 
 .page-header {
@@ -262,6 +265,12 @@ h1 {
   font-size: var(--text-entry);
   line-height: 1.15;
   margin: 0;
+}
+
+.ledger-row h2 .ext {
+  font-family: var(--font-text);
+  font-weight: 400;
+  color: var(--ink-muted);
 }
 
 .ledger-row .entry-desc {
@@ -360,6 +369,10 @@ h1 {
 .resume-document a { text-decoration-color: var(--hairline); text-underline-offset: 3px; }
 .resume-document a:hover { text-decoration-color: var(--plum); }
 
+.contact-line { color: var(--ink-muted); }
+.job-meta { margin: 0.2rem 0; }
+.job-meta strong { color: var(--ink); }
+
 /* ---------- Metadata: the lab record ---------- */
 
 .metadata-panel {
@@ -367,10 +380,28 @@ h1 {
   border-top: 2px solid var(--rule);
   border-radius: 2px;
   padding: var(--space-md);
-  background: transparent;
+  background: var(--paper);
+  position: sticky;
+  top: var(--space-md);
 }
 
 .metadata-panel > .button { width: 100%; margin-bottom: var(--space-sm); }
+
+.jump-list {
+  display: grid;
+  gap: var(--space-2xs);
+  margin: 0 0 var(--space-md);
+  padding: 0 0 var(--space-md);
+  border-bottom: 1px solid var(--hairline);
+  font-size: var(--text-small);
+}
+
+.jump-list a {
+  text-decoration: none;
+  color: var(--ink-muted);
+}
+
+.jump-list a:hover { color: var(--plum); }
 
 .metadata-panel summary {
   cursor: pointer;
@@ -469,7 +500,7 @@ h1 {
 @media (max-width: 820px) {
   .resume-layout { grid-template-columns: 1fr; }
   /* Download PDF must not sink below the full document on phones. */
-  .resume-layout .metadata-panel { order: -1; }
+  .resume-layout .metadata-panel { order: -1; position: static; }
   .ledger-row { grid-template-columns: 1fr; }
   .contents-entry { grid-template-columns: 1fr; }
   .contents-entry .arrow { display: none; }
@@ -477,7 +508,8 @@ h1 {
 
 @media print {
   body { background: none; display: block; }
-  .site-nav, .metadata-panel, .page-header, .site-footer, .skip-link { display: none; }
+  .site-nav, .metadata-panel, .site-footer, .skip-link { display: none; }
+  .resume-page .page-header { display: none; }
   .resume-layout { display: block; padding: 0; }
   .resume-document {
     border: none;

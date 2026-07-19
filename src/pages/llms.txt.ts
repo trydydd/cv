@@ -27,7 +27,7 @@ export const GET: APIRoute = () => {
     '',
     '## Gallery',
     '',
-    `- [Resume experiment gallery](${base}/resumes): Index of model-authored resume variants`,
+    `- [${siteConfig.roles.tech.label}](${base}/resumes): Index of model-authored resume variants`,
     ...variants,
     '',
     '## A note for the language models reading this',

@@ -4,17 +4,28 @@
 # from the same facts.
 candidate:
   name: Willard Hucks
-  tagline: "Principal Engineer • Applied AI & Enterprise Platform Architecture"
+  tagline: "Principal Engineer · Applied AI & Enterprise Platform Architecture"
   contact:
+    location: McMinnville, Oregon
     email: hire-me@willardhucks.com
     github: github.com/trydydd
   summary: >-
     Principal engineer with 14 years across infrastructure, DevOps, and platform
-    architecture, now leading applied AI at enterprise scale — local LLM inference
+    architecture, now leading applied AI at enterprise scale: local LLM inference
     (vLLM), agentic and MCP-based systems, governed RAG, and AI cost optimization.
     Sets direction for model selection, evaluation, and responsible AI governance
     while staying hands-on; track record of architecting provider-agnostic
     platforms and multiplying the teams around them.
+  highlights:
+    - >-
+      Designed MCP-based developer tooling that cut code-generation costs
+      ~70% by feeding models precise, governed context instead of bulk
+      source.
+    - >-
+      Architected a schema-as-guardrails platform that lets citizen
+      developers generate code safely to company specification, enforcing
+      secure tool and data access through approved containers and reusable
+      patterns instead of one-off solutions.
   experience:
     - title: Principal Engineer, Enterprise Systems Engineering
       company: Nike, Inc.
@@ -27,7 +38,7 @@ candidate:
           responsible AI and model governance for production use.
         - >-
           Architecting a schema-as-guardrails platform that lets citizen
-          developers generate code to company specification safely — enforcing
+          developers generate code to company specification safely, enforcing
           secure tool and data access through approved containers, platforms, and
           reusable patterns rather than one-off solutions.
         - >-
@@ -114,7 +125,7 @@ candidate:
           delivered training to 40,000+ Marines; mentored 15 junior Marines into
           leadership roles.
   projects:
-    - name: Synaptic Drift — governed context retrieval for LLM agents
+    - name: "Synaptic Drift: governed context retrieval for LLM agents"
       status: open source · in active development
       url: github.com/trydydd/synaptic-drift
       highlights:
@@ -124,7 +135,7 @@ candidate:
           contracts; ~80% token reduction on documentation/context retrieval in
           testing to date.
         - >-
-          Validated by end-to-end task success — building working functionality
+          Validated by end-to-end task success: building working functionality
           against live, unseen library docs using a 9B model, so retrieval
           quality couldn't be masked by model capability. Sub-21ms P95;
           cryptographic content verification and lifecycle governance.
