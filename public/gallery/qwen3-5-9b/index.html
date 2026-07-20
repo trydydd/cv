@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Willard Hucks - Resume</title>
+    <title>Resume - Willard Hucks</title>
     <style>
         :root {
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-primary: #212529;
-            --text-secondary: #6c757d;
-            --accent-color: #0d6efd;
-            --border-color: #dee2e6;
-            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            --bg-color: #0f172a;
+            --sidebar-bg: #1e293b;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent: #38bdf8;
+            --accent-dim: #0ea5e9;
+            --border: #334155;
+            --heading-color: #ffffff;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         * {
@@ -23,447 +26,521 @@
         }
 
         body {
-            font-family: var(--font-main);
+            font-family: var(--font-stack);
             background-color: var(--bg-color);
             color: var(--text-primary);
             line-height: 1.6;
-            padding: 2rem 1rem;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
-            background: var(--card-bg);
-            padding: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 40px;
         }
 
-        /* Header */
+        /* Sidebar Styling */
+        .sidebar {
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+        }
+
+        .contact-group, .hobbies-group, .community-group {
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .contact-item a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent);
+        }
+
+        .contact-icon {
+            margin-right: 10px;
+            width: 16px;
+            height: 16px;
+            background-color: var(--accent-dim);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .skills-category {
+            margin-bottom: 20px;
+        }
+
+        .skills-category h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .skills-category ul {
+            list-style: none;
+        }
+
+        .skills-category li {
+            font-size: 0.85rem;
+            padding: 2px 0;
+            color: var(--text-primary);
+            border-bottom: 1px solid #2a3648;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
         header {
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 40px;
         }
 
         h1 {
             font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .tagline {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-        }
-
-        .contact-info a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-
-        /* Sections */
-        section {
-            margin-bottom: 3rem;
+            font-weight: 800;
+            color: var(--heading-color);
+            line-height: 1.1;
+            margin-bottom: 10px;
         }
 
         h2 {
             font-size: 1.25rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-secondary);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-weight: 700;
         }
 
-        /* Experience */
-        .job {
-            margin-bottom: 2rem;
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        .section-summary {
+            font-size: 1.1rem;
+            color: #c6d4df;
+            margin-bottom: 35px;
+            max-width: 800px;
+        }
+
+        .experience, .projects, .education {
+            border-left: 2px solid var(--border);
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -34px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            border: 2px solid var(--bg-color);
         }
 
         .job-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 0.5rem;
-            flex-wrap: wrap;
+            margin-bottom: 8px;
         }
 
         .job-title {
+            font-size: 1.15rem;
             font-weight: 700;
-            font-size: 1.1rem;
+            color: var(--heading-color);
         }
 
         .job-company {
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 500;
             color: var(--text-secondary);
         }
 
-        .job-dates {
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+        .job-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
         }
 
-        .job-highlights {
+        .job-location {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .highlights-list {
             list-style: none;
             padding-left: 0;
         }
 
-        .job-highlights li {
+        .highlights-list > li {
             position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .job-highlights li::before {
-            content: "•";
-            color: var(--accent-color);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        /* Projects */
-        .project-card {
-            background: #f1f3f5;
-            padding: 1.5rem;
-            border-radius: 6px;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-name {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .project-meta {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-category h3 {
-            font-size: 1rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-        }
-
-        .skill-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .skill-list li {
-            padding: 0.25rem 0;
-            border-bottom: 1px solid #eee;
+            padding-left: 20px;
+            margin-bottom: 10px;
             font-size: 0.95rem;
         }
 
-        /* Education */
-        .edu-item {
-            margin-bottom: 1rem;
+        .highlights-list > li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
         }
 
-        .edu-degree {
-            font-weight: 700;
+        /* Badges for skills */
+        .skill-tag {
+            display: inline-block;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+            margin-right: 4px;
+            margin-bottom: 4px;
         }
 
-        .edu-school {
-            color: var(--text-secondary);
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
+        /* Media Queries */
+        @media (max-width: 768px) {
             .container {
-                padding: 1.5rem;
+                grid-template-columns: 1fr;
             }
             
-            .job-header {
-                flex-direction: column;
-            }
-            
-            .job-dates {
-                margin-top: 0.25rem;
+            .sidebar {
+                position: relative;
+                top: 0;
+                border-top: 1px solid var(--border);
+                padding-top: 30px;
+                margin-bottom: 30px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+<div class="container">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        
+        <div class="contact-group">
+            <div class="sidebar-title">Contact</div>
+            
+            <div class="contact-item">
+                <span class="contact-icon"></span>
+                <span>Mcminnville, Oregon</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon"></span>
+                <a href="mailto:hire-me@willardhucks.com">hire-me@willardhucks.com</a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon"></span>
+                <a href="https://github.com/trydydd" target="_blank">github.com/trydydd</a>
+            </div>
+        </div>
+
+        <div class="skills-group">
+            <div class="sidebar-title">Technical Skills</div>
+            
+            <div class="skills-category">
+                <h4>Applied AI & Infra</h4>
+                <div>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Bash</span>
+                    <span class="skill-tag">PowerShell</span>
+                    <span class="skill-tag">Azure</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">Nutanix</span>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h4>AI & LLM Engineering</h4>
+                <div>
+                    <span class="skill-tag">Large Language Models (LLMs)</span>
+                    <span class="skill-tag">Model Context Protocol (MCP)</span>
+                    <span class="skill-tag">RAG</span>
+                    <span class="skill-tag">vLLM</span>
+                    <span class="skill-tag">MLOps</span>
+                    <span class="skill-tag">Model Evaluation</span>
+                    <span class="skill-tag">Responsible AI</span>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h4>Architecture & Leadership</h4>
+                <div>
+                    <span class="skill-tag">Platform Architecture</span>
+                    <span class="skill-tag">Agile</span>
+                    <span class="skill-tag">Mentorship</span>
+                    <span class="skill-tag">Agile</span>
+                    <span class="skill-tag">Risk Management</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="community-group">
+            <div class="sidebar-title">Community</div>
+            <div style="margin-bottom: 15px; font-size: 0.95rem;">
+                <strong>Oak Swale Acres</strong> (Cofounder, 2018–Present)
+                <br><small>Family farm investing in food security.</small>
+            </div>
+            <div style="font-size: 0.95rem;">
+                <strong>Slime Mold Grappling Club</strong> (Founder, 2023–Present)
+                <br><small>Publishing free curriculums.</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
         <header>
             <h1>Willard Hucks</h1>
-            <p class="tagline">Principal Engineer • Applied AI & Enterprise Platform Architecture</p>
-            <div class="contact-info">
-                <span>hire-me@willardhucks.com</span>
-                <a href="https://github.com/trydydd" target="_blank">github.com/trydydd</a>
+            <div class="tagline">Principal Engineer · Enterprise Systems Engineering</div>
+            
+            <div class="contact-group" style="border:none; padding-bottom: 0;">
+                <div class="highlights-list" style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <span><strong>📍</strong> McMinnville, Oregon</span>
+                    <span><strong>✉️</strong> hire-me@willardhucks.com</span>
+                    <span><strong>🐙</strong> github.com/trydydd</span>
+                </div>
             </div>
         </header>
 
         <section>
-            <h2>Summary</h2>
-            <p>
-                Principal engineer with 14 years across infrastructure, DevOps, and platform architecture, now leading applied AI at enterprise scale — local LLM inference (vLLM), agentic and MCP-based systems, governed RAG, and AI cost optimization. Sets direction for model selection, evaluation, and responsible AI governance while staying hands-on; track record of architecting provider-agnostic platforms and multiplying the teams around them.
-            </p>
+            <div class="section-summary">
+                <p>
+                    Principal engineer with 14 years across infrastructure, DevOps, and platform architecture, now leading applied AI at enterprise scale: local LLM inference (vLLM), agentic and MCP-based systems, governed RAG, and AI cost optimization. Sets direction for model selection, evaluation, and responsible AI consumption while staying hands-on; track record of architecting provider-agnostic platforms and multiplying the teams around them.
+                </p>
+            </div>
         </section>
 
-        <section>
+        <section class="experience">
             <h2>Experience</h2>
 
-            <div class="job">
+            <article class="timeline-item">
+                <div class="timeline-marker"></div>
                 <div class="job-header">
                     <div>
-                        <span class="job-title">Principal Engineer, Enterprise Systems Engineering</span>
-                        <span class="job-company"> • Nike, Inc.</span>
+                        <div class="job-title">Principal Engineer, Enterprise Systems Engineering</div>
+                        <span class="job-company">Nike, Inc.</span>
                     </div>
-                    <span class="job-dates">Nov 2021 – Present</span>
+                    <div class="job-date">Nov 2021 – Present</div>
                 </div>
-                <ul class="job-highlights">
+                <span class="job-location">Beaverton, OR</span>
+                <ul class="highlights-list">
                     <li>Set enterprise direction for applied AI practices: model selection, retrieval strategy, evaluation and experimentation, MLOps, and responsible AI and model governance for production use.</li>
-                    <li>Architecting a schema-as-guardrails platform that lets citizen developers generate code to company specification safely — enforcing secure tool and data access through approved containers, platforms, and reusable patterns rather than one-off solutions.</li>
-                    <li>Made and executed the build-vs-buy decision to keep LLM inference in-house: built and operate local inference infrastructure (vLLM serving the Qwen3 family) powering internal chat and code-generation workloads for cost, latency, and data control.</li>
-                    <li>Designed MCP-based developer tooling (a symbol-index server) that reduced code-generation costs by ~70% by feeding models precise, governed context instead of bulk source.</li>
-                    <li>Multiply teams through architecture reviews, reusable patterns, and mentorship across engineering organizations.</li>
+                    <li>Architected a schema-as-guardrails platform that lets citizen developers generate code to company specification safely, enforcing secure tool and data access through approved containers, platforms, and reusable patterns rather than one-off solutions.</li>
+                    <li>Designed MCP-based developer tooling (a symbol-index server) that reduced code analysis costs by ~70% by feeding models precise, governed context instead of bulk source.</li>
+                    <li>Maintained and operated internally-hosted LLM inference infrastructure (vLLM) at enterprise scale, serving internal chat and code-generation workloads.</li>
+                    <li>Built the framework for enterprise Microsoft Copilot adoption, including Copilot Cowork and Copilot Studio.</li>
+                    <li>Multiplied teams through architecture reviews, reusable patterns, and mentorship across engineering organizations.</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="job">
+            <article class="timeline-item">
+                <div class="timeline-marker"></div>
                 <div class="job-header">
                     <div>
-                        <span class="job-title">Senior Engineering Manager</span>
-                        <span class="job-company"> • Nike, Inc.</span>
+                        <div class="job-title">Senior Engineering Manager</div>
+                        <span class="job-company">Nike, Inc.</span>
                     </div>
-                    <span class="job-dates">Mar 2018 – Nov 2021</span>
+                    <div class="job-date">Mar 2018 – Nov 2021</div>
                 </div>
-                <ul class="job-highlights">
+                <span class="job-location">Beaverton, OR</span>
+                <ul class="highlights-list">
                     <li>Led the Release Engineering Core team (6 developers, systems engineers, and architects) and its Agile process; owned the global retail release platform.</li>
                     <li>Spearheaded quality efforts for high-demand ("high-heat") sneaker releases; founded an internal engineer training initiative to grow team capability.</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="job">
+            <article class="timeline-item">
+                <div class="timeline-marker"></div>
                 <div class="job-header">
                     <div>
-                        <span class="job-title">Lead DevOps Engineer</span>
-                        <span class="job-company"> • Nike, Inc.</span>
+                        <div class="job-title">Lead DevOps Engineer</div>
+                        <span class="job-company">Nike, Inc.</span>
                     </div>
-                    <span class="job-dates">Apr 2017 – Mar 2018</span>
+                    <div class="job-date">Apr 2017 – Mar 2018</div>
                 </div>
-                <ul class="job-highlights">
+                <span class="job-location">Beaverton, OR</span>
+                <ul class="highlights-list">
                     <li>Architected a containerized, cloud-provider-agnostic global release management platform (Azure, AWS, and datacenter deployments) and handed it off cleanly to the owning team.</li>
                     <li>Designed a global package distribution system that cut deployment time from 9 days to 1 hour, removing an infrastructure bottleneck and raising release velocity.</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="job">
+            <article class="timeline-item">
+                <div class="timeline-marker"></div>
                 <div class="job-header">
                     <div>
-                        <span class="job-title">DevOps Engineer</span>
-                        <span class="job-company"> • Nike, Inc.</span>
+                        <div class="job-title">DevOps Engineer</div>
+                        <span class="job-company">Nike, Inc.</span>
                     </div>
-                    <span class="job-dates">Aug 2015 – Apr 2017</span>
+                    <div class="job-date">Aug 2015 – Apr 2017</div>
                 </div>
-                <ul class="job-highlights">
+                <span class="job-location">Beaverton, OR</span>
+                <ul class="highlights-list">
                     <li>Designed a global retail testing methodology (Ansible + Nutanix) that reduced lab creation from 1 week to 1 hour and release testing from two weeks to under one business day.</li>
                     <li>Used infrastructure-as-code to guarantee test-environment integrity; helped other teams automate daily work with Ansible and Python.</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="job">
+            <article class="timeline-item">
+                <div class="timeline-marker"></div>
                 <div class="job-header">
                     <div>
-                        <span class="job-title">Service Virtualization Engineer</span>
-                        <span class="job-company"> • Nike, Inc.</span>
+                        <div class="job-title">Service Virtualization Engineer</div>
+                        <span class="job-company">Nike, Inc.</span>
                     </div>
-                    <span class="job-dates">Jan 2015 – Aug 2015</span>
+                    <div class="job-date">Jan 2015 – Aug 2015</div>
                 </div>
-                <ul class="job-highlights">
+                <span class="job-location">Beaverton, OR</span>
+                <ul class="highlights-list">
                     <li>Built company-wide CA Service Virtualization training and processes, eliminating ~$1M/month in infrastructure spend.</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="job">
+            <article class="timeline-item">
+                <div class="timeline-marker"></div>
                 <div class="job-header">
                     <div>
-                        <span class="job-title">Systems Administrator</span>
-                        <span class="job-company"> • Performance Health Technology</span>
+                        <div class="job-title">Systems Administrator</div>
+                        <span class="job-company">Performance Health Technology</span>
                     </div>
-                    <span class="job-dates">Mar 2014 – Jan 2015</span>
+                    <div class="job-date">Mar 2014 – Jan 2015</div>
                 </div>
-                <ul class="job-highlights">
+                <span class="job-location">Salem, OR</span>
+                <ul class="highlights-list">
                     <li>Maintained the company datacenter (Nutanix Acropolis, Meraki networking, Nagios) and mentored junior administrators and developers.</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="job">
+            <article class="timeline-item">
+                <div class="timeline-marker"></div>
                 <div class="job-header">
                     <div>
-                        <span class="job-title">Helpdesk Manager</span>
-                        <span class="job-company"> • Allegheny Technologies Incorporated</span>
+                        <div class="job-title">Helpdesk Manager</div>
+                        <span class="job-company">Allegheny Technologies Incorporated</span>
                     </div>
-                    <span class="job-dates">Oct 2012 – Mar 2014</span>
+                    <div class="job-date">Oct 2012 – Mar 2014</div>
                 </div>
-                <ul class="job-highlights">
+                <span class="job-location">Albany, OR</span>
+                <ul class="highlights-list">
                     <li>Supported 2,000+ end users across 5 remote sites; built and deployed systems; mentored technicians and interns.</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="job">
+            <article class="timeline-item">
+                <div class="timeline-marker"></div>
                 <div class="job-header">
                     <div>
-                        <span class="job-title">Armory Chief</span>
-                        <span class="job-company"> • United States Marine Corps</span>
+                        <div class="job-title">Armory Chief</div>
+                        <span class="job-company">United States Marine Corps</span>
                     </div>
-                    <span class="job-dates">Jan 2009 – Oct 2012</span>
+                    <div class="job-date">Jan 2009 – Oct 2012</div>
                 </div>
-                <ul class="job-highlights">
+                <span class="job-location">Jacksonville, NC</span>
+                <ul class="highlights-list">
                     <li>Accountable for $19M in weaponry and electronics; developed and delivered training to 40,000+ Marines; mentored 15 junior Marines into leadership roles.</li>
                 </ul>
-            </div>
+            </article>
         </section>
 
-        <section>
-            <h2>Projects</h2>
-
-            <div class="project-card">
-                <span class="project-name">Synaptic Drift — governed context retrieval for LLM agents</span>
-                <div class="project-meta">open source · in active development</div>
-                <ul class="job-highlights">
+        <section class="projects">
+            <h2>Open Source & Projects</h2>
+            
+            <div style="margin-bottom: 25px;">
+                <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 5px;">Synaptic Drift: governed context retrieval for LLM agents</div>
+                <div style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">
+                    <strong>status:</strong> open source · in active development
+                </div>
+                <ul class="highlights-list">
                     <li>Retrieval-augmented generation (RAG) system serving verifiable, governed context to agents over MCP with schema-enforced tool contracts; ~80% token reduction on documentation/context retrieval in testing to date.</li>
-                    <li>Validated by end-to-end task success — building working functionality against live, unseen library docs using a 9B model, so retrieval quality couldn't be masked by model capability. Sub-21ms P95; cryptographic content verification and lifecycle governance.</li>
+                    <li>Validated by end-to-end task success: building working functionality against live, unseen library docs using a 9B model, so retrieval quality couldn't be masked by model capability. Sub-21ms P95; cryptographic content verification and lifecycle governance.</li>
                 </ul>
             </div>
 
-            <div class="project-card">
-                <span class="project-name">GPT-2-class language model, pretrained from scratch</span>
-                <div class="project-meta">personal</div>
-                <ul class="job-highlights">
-                    <li>Trained a GPT-2-equivalent model end-to-end (children's stories) to work through the full pretraining stack first-hand.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>Community</h2>
-
-            <div class="project-card">
-                <span class="project-name">Oak Swale Acres</span>
-                <div class="project-meta">Cofounder (2018 – Present)</div>
-                <ul class="job-highlights">
-                    <li>Family farm investing in community food security; raise livestock and donate 300–400 lbs of meat annually to local food pantries and individuals in need.</li>
-                </ul>
-            </div>
-
-            <div class="project-card">
-                <span class="project-name">Slime Mold Grappling Club</span>
-                <div class="project-meta">Founder (2023 – Present)</div>
-                <ul class="job-highlights">
-                    <li>Publish free, structured submission-grappling curriculum and coaching resources; donate equipment and consultation to clubs that don't charge dues.</li>
+            <div>
+                <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 5px;">Vamp: schema-as-guardrails platform for citizen developers</div>
+                <div style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">
+                    <strong>status:</strong> personal · in active development
+                </div>
+                <ul class="highlights-list">
+                    <li>Lets citizen developers write and ship code to company specification safely, enforcing secure tool and data access through schema-defined guardrails instead of manual review.</li>
                 </ul>
             </div>
         </section>
 
-        <section>
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Applied AI</h3>
-                    <ul class="skill-list">
-                        <li>Large language models (LLMs)</li>
-                        <li>Agentic and multi-agent systems</li>
-                        <li>Model Context Protocol (MCP)</li>
-                        <li>Retrieval-augmented generation (RAG)</li>
-                        <li>LLM inference serving (vLLM)</li>
-                        <li>Model evaluation & experimentation</li>
-                        <li>Prompt & guardrail design</li>
-                        <li>Cost optimization & inference efficiency</li>
-                        <li>Responsible AI & model governance</li>
-                        <li>MLOps</li>
-                        <li>Model pretraining</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Architecture & Leadership</h3>
-                    <ul class="skill-list">
-                        <li>Enterprise AI architecture</li>
-                        <li>Platform architecture</li>
-                        <li>Build-vs-buy analysis</li>
-                        <li>Technical direction & standards</li>
-                        <li>Mentorship</li>
-                        <li>Cross-functional collaboration</li>
-                        <li>Risk management</li>
-                        <li>Agile</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Languages</h3>
-                    <ul class="skill-list">
-                        <li>Python</li>
-                        <li>Bash</li>
-                        <li>PowerShell</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Platforms & Infra</h3>
-                    <ul class="skill-list">
-                        <li>Azure</li>
-                        <li>AWS</li>
-                        <li>Docker</li>
-                        <li>Datacenter</li>
-                        <li>Nutanix</li>
-                        <li>Ansible</li>
-                        <li>Jenkins</li>
-                        <li>Git/BitBucket</li>
-                        <li>CI/CD</li>
-                        <li>Infrastructure-as-Code</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section>
+        <section class="education">
             <h2>Education & Honors</h2>
-            <div class="edu-item">
-                <div class="edu-degree">B.A., Thomas Jefferson State University</div>
-                <div class="edu-school">2024</div>
-            </div>
-            <div class="edu-item">
-                <div class="edu-degree">A.S., University of South Carolina</div>
-                <div class="edu-school">2006–2008</div>
-            </div>
-            <div class="edu-item">
-                <div class="edu-degree">Navy and Marine Corps Achievement Medal</div>
-            </div>
+            <ul class="highlights-list">
+                <li style="color: var(--text-secondary);"><strong>B.A.</strong> Thomas Edison State University (2024)</li>
+                <li style="color: var(--text-secondary);"><strong>A.S.</strong> University of South Carolina (2006–2008)</li>
+                <li style="color: var(--text-secondary);"><strong>Navy and Marine Corps Achievement Medal</strong></li>
+            </ul>
         </section>
 
-    </div>
+        <!-- Highlights extracted from YAML, presents as "Key Metrics" -->
+        <section>
+            <h2>Key Engineering Highlights</h2>
+            <ul class="highlights-list">
+                <li><strong>Cost Reduction:</strong> Designed MCP-based developer tooling that cut code analysis costs ~70% by feeding models precise, governed context instead of bulk source.</li>
+                <li><strong>Safety & Scale:</strong> Architected a schema-as-guardrails platform that lets citizen developers generate code safely to company specification, enforcing secure tool and data access through approved containers and reusable patterns instead of one-off solutions.</li>
+            </ul>
+        </section>
+
+    </main>
+</div>
 
 
 <div id="rlab-provenance-badge">

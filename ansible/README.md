@@ -58,6 +58,74 @@ Add an entry to `models.yml`:
 No playbook changes needed. The recipe must already exist in
 `spark-vllm-docker/recipes/` on the inference host.
 
+### Per-model sampling overrides (optional)
+
+`generate_one.yml` forwards these fields to
+`scripts/generate-gallery-page.mjs` only when present, so leave them out to
+use the server's own defaults (discovered per-request via the vLLM
+`/v1/chat/completions/render` endpoint):
+
+```yaml
+  - resume_id: my-thinking-model
+    recipe: my-recipe-name
+    label: "My Thinking Model"
+    tier: local
+    max_tokens: none        # or an integer cap
+    temperature: 0.2
+    top_k: 80
+    repetition_penalty: 1.05
+```
+
+- `max_tokens: none` maps to `--max-tokens none`, which tells the script to
+  send **no** `max_tokens` at all (as opposed to omitting the field, which
+  falls back to the script's own default cap of 8000). Use this for
+  reasoning/"thinking" models — their own docs typically warn that capping
+  `max_tokens` truncates the chain-of-thought before final content is
+  produced, since reasoning tokens count against the same budget.
+- `temperature` / `top_k` / `repetition_penalty` override the server's
+  resolved defaults. Set these when a model's card documents recommended
+  sampling parameters that differ from what the server applies by default
+  (checked via the `/render` endpoint, logged at the top of each run).
+
+### Models that aren't spark-vllm-docker recipes
+
+Some models are served by their own bespoke install/serve scripts rather
+than a `spark-vllm-docker` recipe (e.g. `qwen3-5-122b`, served via
+[Entrpi/qwen3.5-122B-A10B-on-spark](https://github.com/Entrpi/qwen3.5-122B-A10B-on-spark)
+— a custom Docker image + vLLM runtime patches for DFlash speculative
+decoding on DGX Spark hardware). For these:
+
+- Still add an entry to `models.yml` with `recipe: null`, for roster
+  visibility — the playbook can't drive the start/stop cycle for it.
+- Start/stop the server by hand per that project's own instructions, then
+  run `scripts/generate-gallery-page.mjs` directly (see below) instead of
+  the playbook.
+- Before running any such third-party install script, read through it (and
+  any patches it applies) — these pull unverified Docker images and model
+  weights from arbitrary sources, so confirm there's no networking,
+  subprocess/eval, or file access outside the expected model/vLLM paths
+  before executing.
+
+## Generating a single page by hand
+
+Equivalent to what the playbook does per-model, useful when a server is
+already running (manually, or via a non-recipe install script):
+
+```bash
+node scripts/generate-gallery-page.mjs <resume-id> \
+  --server http://192.168.0.214:8000 \
+  --label "My Model" \
+  --tier local \
+  [--max-tokens 8000|none] [--temperature N] [--top-k N] [--repetition-penalty N] \
+  [--timeout 1200000]
+```
+
+Defaults: `--max-tokens 8000`, `--timeout 300000` (raise this for slow
+backends — some genuinely take 9+ minutes to generate on this hardware).
+`--temperature` / `--top-k` / `--repetition-penalty` are omitted from the
+request entirely unless passed, letting the server apply its own resolved
+defaults.
+
 ## What each cycle does
 
 1. Refuses to start if a `vllm_node` container is already running (stale

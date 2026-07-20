@@ -522,7 +522,7 @@ h1 {
 
 @media print {
   body { background: none; display: block; }
-  .site-nav, .metadata-panel, .site-footer, .skip-link { display: none; }
+  .site-nav, .metadata-panel, .site-footer, .skip-link, .quick-download { display: none; }
   .resume-page .page-header { display: none; }
   .resume-layout { display: block; padding: 0; }
   .resume-document {

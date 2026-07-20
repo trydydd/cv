@@ -21,15 +21,24 @@
 //   --description <text>   Gallery card description
 //   --tier <tier>           frontier | hosted | local | baseline (default: local)
 //   --provider <text>      Overrides the discovered provider label
-//   --temperature <number>  (default: 0.3)
-//   --max-tokens <number>   (default: 8000)
-//   --timeout <ms>          Generation request timeout (default: 300000)
+//   --temperature <number>  Omitted by default — the server/model's own default sampling applies
+//   --top-k <number>        Omitted by default (vLLM extension, not part of the OpenAI schema)
+//   --repetition-penalty <number>  Omitted by default (vLLM extension)
+//   --max-tokens <number|none>  (default: 8000). Pass "none" to omit
+//                           max_tokens entirely — required by some
+//                           reasoning/"thinking" models, which document that
+//                           capping it truncates the reasoning chain before
+//                           final content is produced.
+//   --timeout <ms>          Generation request timeout (default: 1200000 — some
+//                           models/backends generate well under 10 tok/s on this
+//                           hardware; a full ~2.3K-token prompt + ~4K-token
+//                           response has been measured taking ~9 minutes)
 
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import YAML from 'yaml';
-import { discoverHostedModel, generateChatCompletion } from './lib/model-server.mjs';
+import { discoverHostedModel, generateChatCompletion, resolveSamplingParams } from './lib/model-server.mjs';
 import { injectProvenanceBadge } from './lib/provenance-badge.mjs';
 
 const root = process.cwd();
@@ -43,9 +52,8 @@ function parseArgs(argv) {
   const options = {
     server: 'http://192.168.0.214:8000',
     tier: 'local',
-    temperature: 0.3,
     maxTokens: 8000,
-    timeout: 300_000,
+    timeout: 1_200_000,
   };
   const flagMap = {
     '--server': (v) => (options.server = v),
@@ -55,7 +63,9 @@ function parseArgs(argv) {
     '--tier': (v) => (options.tier = v),
     '--provider': (v) => (options.provider = v),
     '--temperature': (v) => (options.temperature = Number(v)),
-    '--max-tokens': (v) => (options.maxTokens = Number(v)),
+    '--top-k': (v) => (options.topK = Number(v)),
+    '--repetition-penalty': (v) => (options.repetitionPenalty = Number(v)),
+    '--max-tokens': (v) => (options.maxTokens = v.toLowerCase() === 'none' ? null : Number(v)),
     '--timeout': (v) => (options.timeout = Number(v)),
   };
   for (let i = 0; i < rest.length; i += 2) {
@@ -108,12 +118,40 @@ async function main() {
   const { version: promptVersion, body: promptBody } = readPromptTemplate();
   const prompt = promptBody.replace('{{ resume_yaml }}', resumeYaml.trim());
 
+  console.log('Resolving effective sampling parameters...');
+  const { params: samplingParams, effectiveMaxTokens, promptTokenCount, clamped } = await resolveSamplingParams(
+    options.server,
+    {
+      modelId: hosted.id,
+      prompt,
+      temperature: options.temperature,
+      topK: options.topK,
+      repetitionPenalty: options.repetitionPenalty,
+      maxTokens: options.maxTokens,
+    },
+  );
+  console.log(`Sampling: ${JSON.stringify(samplingParams)}`);
+  if (clamped) {
+    console.log(
+      `Note: requested --max-tokens ${options.maxTokens} exceeds this model's remaining context ` +
+        `(prompt is ${promptTokenCount} tokens); using ${effectiveMaxTokens} instead.`,
+    );
+  }
+  if (typeof effectiveMaxTokens === 'number' && effectiveMaxTokens < 512) {
+    throw new Error(
+      `Only ${effectiveMaxTokens} tokens remain for the response after a ${promptTokenCount}-token prompt — ` +
+        `this model's context window is too small to fit inputs/resume.yaml + inputs/prompt.md and produce a full page.`,
+    );
+  }
+
   console.log('Requesting generation (this can take a while for larger models)...');
   const rawOutput = await generateChatCompletion(options.server, {
     modelId: hosted.id,
     prompt,
     temperature: options.temperature,
-    maxTokens: options.maxTokens,
+    topK: options.topK,
+    repetitionPenalty: options.repetitionPenalty,
+    maxTokens: effectiveMaxTokens,
     timeoutMs: options.timeout,
   });
 
@@ -147,6 +185,7 @@ async function main() {
     generatedAt: new Date().toISOString(),
     promptVersion,
     resumeHash,
+    samplingParams,
     pageUrl: `/cv/gallery/${id}/`,
   });
   console.log(`Updated config/resumes.yaml with id "${id}".`);

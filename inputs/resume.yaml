@@ -4,7 +4,7 @@
 # from the same facts.
 candidate:
   name: Willard Hucks
-  tagline: "Principal Engineer · Applied AI & Enterprise Platform Architecture"
+  tagline: "Principal Engineer · Enterprise Systems Engineering"
   contact:
     location: McMinnville, Oregon
     email: hire-me@willardhucks.com
@@ -13,12 +13,12 @@ candidate:
     Principal engineer with 14 years across infrastructure, DevOps, and platform
     architecture, now leading applied AI at enterprise scale: local LLM inference
     (vLLM), agentic and MCP-based systems, governed RAG, and AI cost optimization.
-    Sets direction for model selection, evaluation, and responsible AI governance
+    Sets direction for model selection, evaluation, and responsible AI consumption
     while staying hands-on; track record of architecting provider-agnostic
     platforms and multiplying the teams around them.
   highlights:
     - >-
-      Designed MCP-based developer tooling that cut code-generation costs
+      Designed MCP-based developer tooling that cut code analysis costs
       ~70% by feeding models precise, governed context instead of bulk
       source.
     - >-
@@ -37,23 +37,23 @@ candidate:
           retrieval strategy, evaluation and experimentation, MLOps, and
           responsible AI and model governance for production use.
         - >-
-          Architecting a schema-as-guardrails platform that lets citizen
+          Architected a schema-as-guardrails platform that lets citizen
           developers generate code to company specification safely, enforcing
           secure tool and data access through approved containers, platforms, and
           reusable patterns rather than one-off solutions.
         - >-
           Designed MCP-based developer tooling (a symbol-index server) that
-          reduced code-generation costs by ~70% by feeding models precise,
+          reduced code analysis costs by ~70% by feeding models precise,
           governed context instead of bulk source.
         - >-
-          Maintain and operate internally-hosted LLM inference infrastructure
+          Maintained and operated internally-hosted LLM inference infrastructure
           (vLLM) at enterprise scale, serving internal chat and
           code-generation workloads.
         - >-
           Built the framework for enterprise Microsoft Copilot adoption,
           including Copilot Cowork and Copilot Studio.
         - >-
-          Multiply teams through architecture reviews, reusable patterns, and
+          Multiplied teams through architecture reviews, reusable patterns, and
           mentorship across engineering organizations.
     - title: Senior Engineering Manager
       company: Nike, Inc.
@@ -141,12 +141,13 @@ candidate:
           against live, unseen library docs using a 9B model, so retrieval
           quality couldn't be masked by model capability. Sub-21ms P95;
           cryptographic content verification and lifecycle governance.
-    - name: GPT-2-class language model, pretrained from scratch
-      status: personal
+    - name: "Vamp: schema-as-guardrails platform for citizen developers"
+      status: personal · in active development
       highlights:
         - >-
-          Trained a GPT-2-equivalent model end-to-end (children's stories) to
-          work through the full pretraining stack first-hand.
+          Lets citizen developers write and ship code to company specification
+          safely, enforcing secure tool and data access through schema-defined
+          guardrails instead of manual review.
   community:
     - role: Cofounder
       organization: Oak Swale Acres
@@ -196,6 +197,7 @@ candidate:
       - Azure
       - AWS
       - Docker
+      - Kubernetes
       - Datacenter
       - Nutanix
       - Ansible
@@ -204,6 +206,6 @@ candidate:
       - CI/CD
       - Infrastructure-as-Code
   education_and_honors:
-    - B.A., Thomas Jefferson State University (2024)
+    - B.A., Thomas Edison State University (2024)
     - A.S., University of South Carolina (2006–2008)
     - Navy and Marine Corps Achievement Medal

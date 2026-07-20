@@ -12,6 +12,7 @@ const contact = candidate.contact ?? {};
 const contactParts = [
   contact.location && { text: contact.location },
   contact.email && { text: contact.email, href: `mailto:${contact.email}` },
+  contact.phone && { text: contact.phone, href: `tel:${contact.phone.replace(/[^\d+]/g, '')}` },
   contact.github && { text: contact.github, href: `https://${contact.github}` },
   contact.website && { text: contact.website, href: contact.website },
 ].filter((part): part is { text: string; href?: string } => Boolean(part));

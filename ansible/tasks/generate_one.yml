@@ -33,16 +33,17 @@
 
     - name: "[{{ model.resume_id }}] Generate gallery page"
       ansible.builtin.command:
-        argv:
-          - node
-          - scripts/generate-gallery-page.mjs
-          - "{{ model.resume_id }}"
-          - --server
-          - "{{ server_url }}"
-          - --label
-          - "{{ model.label }}"
-          - --tier
-          - "{{ model.tier | default('local') }}"
+        argv: >-
+          {{
+            ['node', 'scripts/generate-gallery-page.mjs', model.resume_id,
+             '--server', server_url,
+             '--label', model.label,
+             '--tier', model.tier | default('local')]
+            + (['--max-tokens', model.max_tokens | string] if model.max_tokens is defined else [])
+            + (['--temperature', model.temperature | string] if model.temperature is defined else [])
+            + (['--top-k', model.top_k | string] if model.top_k is defined else [])
+            + (['--repetition-penalty', model.repetition_penalty | string] if model.repetition_penalty is defined else [])
+          }}
       args:
         chdir: "{{ repo_dir }}"
       delegate_to: localhost

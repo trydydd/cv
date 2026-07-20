@@ -40,6 +40,12 @@ const sourceHref = `${repo}/blob/main/${resume.candidateSource ?? 'inputs/resume
       <div><dt>Provider</dt><dd>{resume.provider}</dd></div>
       <div><dt>Model</dt><dd>{resume.model}</dd></div>
       <div><dt>Tier</dt><dd>{resume.tier}</dd></div>
+      {resume.samplingParams && Object.keys(resume.samplingParams).length > 0 && (
+        <div>
+          <dt>Sampling</dt>
+          <dd>{Object.entries(resume.samplingParams).map(([key, value]) => `${key} ${value}`).join(' · ')}</dd>
+        </div>
+      )}
       <div><dt>Prompt</dt><dd><a href={promptHref}>prompt.md</a> · v{resume.promptVersion}</dd></div>
       <div><dt>Source data</dt><dd><a href={sourceHref}>{(resume.candidateSource ?? 'inputs/resume.yaml').split('/').pop()}</a></dd></div>
       <div><dt>Generated</dt><dd>{generated}</dd></div>

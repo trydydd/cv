@@ -23,6 +23,14 @@ export interface ResumeEntry {
   generatedAt: string;
   promptVersion: number;
   resumeHash: string;
+  /**
+   * Effective sampling parameters resolved from the inference server at
+   * generation time (scripts/lib/model-server.mjs#resolveSamplingParams) —
+   * includes values that fell through to the server/model's own defaults,
+   * not just ones explicitly passed. Absent for resumes not generated
+   * through the local vLLM pipeline (e.g. the gold resume).
+   */
+  samplingParams?: Record<string, number>;
   pdfPath?: string;
   /**
    * Site-relative URL to a self-contained, model-authored static page
