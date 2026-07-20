@@ -22,7 +22,13 @@
 //   --tier <tier>           frontier | hosted | local | baseline (default: local)
 //   --provider <text>      Overrides the discovered provider label
 //   --temperature <number>  Omitted by default — the server/model's own default sampling applies
-//   --max-tokens <number>   (default: 8000)
+//   --top-k <number>        Omitted by default (vLLM extension, not part of the OpenAI schema)
+//   --repetition-penalty <number>  Omitted by default (vLLM extension)
+//   --max-tokens <number|none>  (default: 8000). Pass "none" to omit
+//                           max_tokens entirely — required by some
+//                           reasoning/"thinking" models, which document that
+//                           capping it truncates the reasoning chain before
+//                           final content is produced.
 //   --timeout <ms>          Generation request timeout (default: 1200000 — some
 //                           models/backends generate well under 10 tok/s on this
 //                           hardware; a full ~2.3K-token prompt + ~4K-token
@@ -57,7 +63,9 @@ function parseArgs(argv) {
     '--tier': (v) => (options.tier = v),
     '--provider': (v) => (options.provider = v),
     '--temperature': (v) => (options.temperature = Number(v)),
-    '--max-tokens': (v) => (options.maxTokens = Number(v)),
+    '--top-k': (v) => (options.topK = Number(v)),
+    '--repetition-penalty': (v) => (options.repetitionPenalty = Number(v)),
+    '--max-tokens': (v) => (options.maxTokens = v.toLowerCase() === 'none' ? null : Number(v)),
     '--timeout': (v) => (options.timeout = Number(v)),
   };
   for (let i = 0; i < rest.length; i += 2) {
@@ -113,7 +121,14 @@ async function main() {
   console.log('Resolving effective sampling parameters...');
   const { params: samplingParams, effectiveMaxTokens, promptTokenCount, clamped } = await resolveSamplingParams(
     options.server,
-    { modelId: hosted.id, prompt, temperature: options.temperature, maxTokens: options.maxTokens },
+    {
+      modelId: hosted.id,
+      prompt,
+      temperature: options.temperature,
+      topK: options.topK,
+      repetitionPenalty: options.repetitionPenalty,
+      maxTokens: options.maxTokens,
+    },
   );
   console.log(`Sampling: ${JSON.stringify(samplingParams)}`);
   if (clamped) {
@@ -134,6 +149,8 @@ async function main() {
     modelId: hosted.id,
     prompt,
     temperature: options.temperature,
+    topK: options.topK,
+    repetitionPenalty: options.repetitionPenalty,
     maxTokens: effectiveMaxTokens,
     timeoutMs: options.timeout,
   });

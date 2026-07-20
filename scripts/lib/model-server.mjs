@@ -43,17 +43,24 @@ export async function discoverHostedModel(baseUrl, { modelId, timeoutMs = 10_000
 // idle-socket timeout we set explicitly below.
 export function generateChatCompletion(
   baseUrl,
-  { modelId, prompt, temperature, maxTokens = 8000, timeoutMs = 300_000 },
+  { modelId, prompt, temperature, topK, repetitionPenalty, maxTokens, timeoutMs = 300_000 },
 ) {
   return new Promise((resolve, reject) => {
     const url = new URL('/v1/chat/completions', baseUrl);
     const payload = JSON.stringify({
       model: modelId,
       messages: [{ role: 'user', content: prompt }],
-      // Omitted unless explicitly passed, so the server/model's own default
-      // sampling behavior applies rather than a value forced by this client.
+      // All omitted unless explicitly passed, so the server/model's own
+      // defaults apply rather than a value forced by this client. Some
+      // reasoning/"thinking" models explicitly document that max_tokens
+      // must be left unset — capping it truncates the reasoning chain
+      // before final content is ever produced. top_k and repetition_penalty
+      // aren't part of the OpenAI schema but are vLLM extensions accepted
+      // as extra top-level request fields.
       ...(temperature !== undefined ? { temperature } : {}),
-      max_tokens: maxTokens,
+      ...(topK !== undefined ? { top_k: topK } : {}),
+      ...(repetitionPenalty !== undefined ? { repetition_penalty: repetitionPenalty } : {}),
+      ...(maxTokens !== undefined ? { max_tokens: maxTokens } : {}),
     });
     const client = url.protocol === 'https:' ? https : http;
 
@@ -126,13 +133,15 @@ const SAMPLING_KEYS = [
 // warning. Requesting more than that ceiling is clamped down to it.
 export async function resolveSamplingParams(
   baseUrl,
-  { modelId, prompt, temperature, maxTokens, timeoutMs = 30_000 },
+  { modelId, prompt, temperature, topK, repetitionPenalty, maxTokens, timeoutMs = 30_000 },
 ) {
   const url = new URL('/v1/chat/completions/render', baseUrl);
   const payload = {
     model: modelId,
     messages: [{ role: 'user', content: prompt }],
     ...(temperature !== undefined ? { temperature } : {}),
+    ...(topK !== undefined ? { top_k: topK } : {}),
+    ...(repetitionPenalty !== undefined ? { repetition_penalty: repetitionPenalty } : {}),
   };
   const res = await fetchWithTimeout(
     url,
@@ -156,13 +165,18 @@ export async function resolveSamplingParams(
 
   const availableMaxTokens = resolved.max_tokens;
   const promptTokenCount = Array.isArray(body.token_ids) ? body.token_ids.length : undefined;
+  // maxTokens === null means the caller explicitly wants no cap at all (some
+  // reasoning models require this) — omit max_tokens from the real request
+  // entirely rather than substituting the server-computed ceiling.
   const effectiveMaxTokens =
-    typeof availableMaxTokens === 'number'
-      ? maxTokens !== undefined
-        ? Math.min(maxTokens, availableMaxTokens)
-        : availableMaxTokens
-      : maxTokens;
-  const clamped = typeof availableMaxTokens === 'number' && maxTokens !== undefined && maxTokens > availableMaxTokens;
+    maxTokens === null
+      ? undefined
+      : typeof availableMaxTokens === 'number'
+        ? maxTokens !== undefined
+          ? Math.min(maxTokens, availableMaxTokens)
+          : availableMaxTokens
+        : maxTokens;
+  const clamped = maxTokens !== null && typeof availableMaxTokens === 'number' && maxTokens !== undefined && maxTokens > availableMaxTokens;
 
   return { params: captured, effectiveMaxTokens, promptTokenCount, clamped };
 }

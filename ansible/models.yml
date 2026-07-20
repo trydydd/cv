@@ -46,3 +46,33 @@ models:
     recipe: gemma4-e2b
     label: "Gemma4 E2B"
     tier: local
+
+  - resume_id: lfm2-230m
+    recipe: lfm2-230m
+    label: "LFM2.5 230M"
+    tier: local
+
+  - resume_id: lfm2-1-2b-thinking
+    recipe: lfm2-1-2b-thinking
+    label: "LFM2.5 1.2B Thinking"
+    tier: local
+    # Required: this reasoning model's own docs warn that capping
+    # max_tokens truncates its chain-of-thought before final content is
+    # produced (see the recipe file for the full explanation).
+    max_tokens: none
+
+  - resume_id: lfm2-8b-a1b
+    recipe: lfm2-8b-a1b
+    label: "LFM2.5 8B-A1B"
+    tier: local
+    max_tokens: none
+    # Explicit per the model's official vLLM deployment guide, rather than
+    # relying on the server's own defaults matching by coincidence.
+    temperature: 0.2
+    top_k: 80
+    repetition_penalty: 1.05
+
+  - resume_id: gemma4-e4b
+    recipe: gemma4-e4b
+    label: "Gemma4 E4B"
+    tier: local
