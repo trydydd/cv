@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willard Hucks - Principal Engineer & Applied AI Architect</title>
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #212529;
+            --heading: #0d6efd;
+            --accent: #6610f2;
+            --border: #dee2e6;
+            --shadow: rgba(0, 0, 0, 0.05);
+            --highlight: #fff3cd;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--heading), var(--accent));
+            color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-info a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 6px var(--shadow);
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--heading);
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            color: var(--text);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .role-dates {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 1.25rem;
+        }
+
+        ul li {
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        ul li::before {
+            content: "•";
+            position: absolute;
+            left: -1.25rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-group {
+            background-color: #f1f3f5;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .skill-group h4 {
+            color: var(--accent);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-group ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background-color: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .summary {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box {
+            background-color: var(--highlight);
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .project-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card .project-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--heading);
+            margin-bottom: 0.25rem;
+        }
+
+        .project-card .project-status {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .project-card a:hover {
+            text-decoration: underline;
+        }
+
+        .community-item {
+            margin-bottom: 1rem;
+        }
+
+        .community-item .org-name {
+            font-weight: bold;
+            color: var(--heading);
+        }
+
+        .community-item .dates {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Willard Hucks</h1>
+            <p>Principal Engineer · Enterprise Systems Engineering</p>
+            <div class="contact-info">
+                <span>McMinnville, Oregon</span>
+                <span><a href="mailto:hire-me@willardhucks.com">hire-me@willardhucks.com</a></span>
+                <span><a href="https://github.com/trydydd" target="_blank">github.com/trydydd</a></span>
+            </div>
+        </header>
+
+        <section>
+            <h2>Professional Summary</h2>
+            <div class="card">
+                <p class="summary">
+                    Principal engineer with 14 years across infrastructure, DevOps, and platform architecture, now leading applied AI at enterprise scale: local LLM inference (vLLM), agentic and MCP-based systems, governed RAG, and AI cost optimization. Sets direction for model selection, evaluation, and responsible AI consumption while staying hands-on; track record of architecting provider-agnostic platforms and multiplying the teams around them.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Key Highlights</h2>
+            <div class="card">
+                <div class="highlight-box">
+                    <ul>
+                        <li>Designed MCP-based developer tooling that cut code analysis costs ~70% by feeding models precise, governed context instead of bulk source.</li>
+                        <li>Architected a schema-as-guardrails platform that lets citizen developers generate code safely to company specification, enforcing secure tool and data access through approved containers and reusable patterns instead of one-off solutions.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Professional Experience</h2>
+            <div class="card">
+                <article>
+                    <h3>Principal Engineer, Enterprise Systems Engineering</h3>
+                    <p class="role-dates">Nike, Inc. — Beaverton, OR | Nov 2021 – Present</p>
+                    <ul>
+                        <li>Set enterprise direction for applied AI practices: model selection, retrieval strategy, evaluation and experimentation, MLOps, and responsible AI and model governance for production use.</li>
+                        <li>Architected a schema-as-guardrails platform that lets citizen developers generate code to company specification safely, enforcing secure tool and data access through approved containers, platforms, and reusable patterns rather than one-off solutions.</li>
+                        <li>Designed MCP-based developer tooling (a symbol-index server) that reduced code analysis costs by ~70% by feeding models precise, governed context instead of bulk source.</li>
+                        <li>Maintained and operated internally-hosted LLM inference infrastructure (vLLM) at enterprise scale, serving internal chat and code-generation workloads.</li>
+                        <li>Built the framework for enterprise Microsoft Copilot adoption, including Copilot Cowork and Copilot Studio.</li>
+                        <li>Multiplied teams through architecture reviews, reusable patterns, and mentorship across engineering organizations.</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>Senior Engineering Manager</h3>
+                    <p class="role-dates">Nike, Inc. — Beaverton, OR | Mar 2018 – Nov 2021</p>
+                    <ul>
+                        <li>Led the Release Engineering Core team (6 developers, systems engineers, and architects) and its Agile process; owned the global retail release platform.</li>
+                        <li>Spearheaded quality efforts for high-demand ("high-heat") sneaker releases; founded an internal engineer training initiative to grow team capability.</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>Lead DevOps Engineer</h3>
+                    <p class="role-dates">Nike, Inc. — Beaverton, OR | Apr 2017 – Mar 2018</p>
+                    <ul>
+                        <li>Architected a containerized, cloud-provider-agnostic global release management platform (Azure, AWS, and datacenter deployments) and handed it off cleanly to the owning team.</li>
+                        <li>Designed a global package distribution system that cut deployment time from 9 days to 1 hour, removing an infrastructure bottleneck and raising release velocity.</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>DevOps Engineer</h3>
+                    <p class="role-dates">Nike, Inc. — Beaverton, OR | Aug 2015 – Apr 2017</p>
+                    <ul>
+                        <li>Designed a global retail testing methodology (Ansible + Nutanix) that reduced lab creation from 1 week to 1 hour and release testing from two weeks to under one business day.</li>
+                        <li>Used infrastructure-as-code to guarantee test-environment integrity; helped other teams automate daily work with Ansible and Python.</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>Service Virtualization Engineer</h3>
+                    <p class="role-dates">Nike, Inc. — Beaverton, OR | Jan 2015 – Aug 2015</p>
+                    <ul>
+                        <li>Built company-wide CA Service Virtualization training and processes, eliminating ~$1M/month in infrastructure spend.</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>Systems Administrator</h3>
+                    <p class="role-dates">Performance Health Technology — Salem, OR | Mar 2014 – Jan 2015</p>
+                    <ul>
+                        <li>Maintained the company datacenter (Nutanix Acropolis, Meraki networking, Nagios) and mentored junior administrators and developers.</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>Helpdesk Manager</h3>
+                    <p class="role-dates">Allegheny Technologies Incorporated — Albany, OR | Oct 2012 – Mar 2014</p>
+                    <ul>
+                        <li>Supported 2,000+ end users across 5 remote sites; built and deployed systems; mentored technicians and interns.</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>Armory Chief</h3>
+                    <p class="role-dates">United States Marine Corps — Jacksonville, NC | Jan 2009 – Oct 2012</p>
+                    <ul>
+                        <li>Accountable for $19M in weaponry and electronics; developed and delivered training to 40,000+ Marines; mentored 15 junior Marines into leadership roles.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section>
+            <h2>Projects</h2>
+            <div class="card">
+                <div class="project-card">
+                    <div class="project-name">Synaptic Drift: governed context retrieval for LLM agents</div>
+                    <div class="project-status">open source · in active development</div>
+                    <p><a href="https://github.com/trydydd/synaptic-drift" target="_blank">github.com/trydydd/synaptic-drift</a></p>
+                    <ul>
+                        <li>Retrieval-augmented generation (RAG) system serving verifiable, governed context to agents over MCP with schema-enforced tool contracts; ~80% token reduction on documentation/context retrieval in testing to date.</li>
+                        <li>Validated by end-to-end task success: building working functionality against live, unseen library docs using a 9B model, so retrieval quality couldn't be masked by model capability. Sub-21ms P95; cryptographic content verification and lifecycle governance.</li>
+                    </ul>
+                </div>
+                <div class="project-card">
+                    <div class="project-name">Vamp: schema-as-guardrails platform for citizen developers</div>
+                    <div class="project-status">personal · in active development</div>
+                    <ul>
+                        <li>Lets citizen developers write and ship code to company specification safely, enforcing secure tool and data access through schema-defined guardrails instead of manual review.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Community</h2>
+            <div class="card">
+                <div class="community-item">
+                    <div class="org-name">Oak Swale Acres</div>
+                    <div class="role-dates">Cofounder | 2018 – Present</div>
+                    <p><a href="https://instagram.com/oakswaleacres" target="_blank">instagram.com/oakswaleacres</a></p>
+                    <ul>
+                        <li>Family farm investing in community food security; raise livestock and donate 300–400 lbs of meat annually to local food pantries and individuals in need.</li>
+                    </ul>
+                </div>
+                <div class="community-item">
+                    <div class="org-name">Slime Mold Grappling Club</div>
+                    <div class="role-dates">Founder | 2023 – Present</div>
+                    <p><a href="https://slimemoldgrappling.com" target="_blank">slimemoldgrappling.com</a></p>
+                    <ul>
+                        <li>Publish free, structured submission-grappling curriculum and coaching resources; donate equipment and consultation to clubs that don't charge dues.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Skills</h2>
+            <div class="card">
+                <div class="skills-grid">
+                    <div class="skill-group">
+                        <h4>Applied AI</h4>
+                        <ul>
+                            <span class="skill-tag">Large language models (LLMs)</span>
+                            <span class="skill-tag">Agentic and multi-agent systems</span>
+                            <span class="skill-tag">Model Context Protocol (MCP)</span>
+                            <span class="skill-tag">Retrieval-augmented generation (RAG)</span>
+                            <span class="skill-tag">LLM inference serving (vLLM)</span>
+                            <span class="skill-tag">Model evaluation & experimentation</span>
+                            <span class="skill-tag">Prompt & guardrail design</span>
+                            <span class="skill-tag">Cost optimization & inference efficiency</span>
+                            <span class="skill-tag">Responsible AI & model governance</span>
+                            <span class="skill-tag">MLOps</span>
+                            <span class="skill-tag">Model pretraining</span>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Architecture & Leadership</h4>
+                        <ul>
+                            <span class="skill-tag">Enterprise AI architecture</span>
+                            <span class="skill-tag">Platform architecture</span>
+                            <span class="skill-tag">Build-vs-buy analysis</span>
+                            <span class="skill-tag">Technical direction & standards</span>
+                            <span class="skill-tag">Mentorship</span>
+                            <span class="skill-tag">Cross-functional collaboration</span>
+                            <span class="skill-tag">Risk management</span>
+                            <span class="skill-tag">Agile</span>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Languages</h4>
+                        <ul>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Bash</span>
+                            <span class="skill-tag">PowerShell</span>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Platforms & Infrastructure</h4>
+                        <ul>
+                            <span class="skill-tag">Azure</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">Datacenter</span>
+                            <span class="skill-tag">Nutanix</span>
+                            <span class="skill-tag">Ansible</span>
+                            <span class="skill-tag">Jenkins</span>
+                            <span class="skill-tag">Git/BitBucket</span>
+                            <span class="skill-tag">CI/CD</span>
+                            <span class="skill-tag">Infrastructure-as-Code</span>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Education & Honors</h2>
+            <div class="card">
+                <ul>
+                    <li>B.A., Thomas Edison State University (2024)</li>
+                    <li>A.S., University of South Carolina (2006–2008)</li>
+                    <li>Navy and Marine Corps Achievement Medal</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <p>Resume generated for Willard Hucks | Last updated: 2025</p>
+        </footer>
+    </div>
+
+<div id="rlab-provenance-badge">
+  <style>
+    #rlab-provenance-badge {
+      all: initial !important;
+      position: fixed !important;
+      bottom: 12px !important;
+      right: 12px !important;
+      z-index: 2147483647 !important;
+      font-family: ui-sans-serif, system-ui, sans-serif !important;
+      font-size: 12px !important;
+      line-height: 1.4 !important;
+    }
+    #rlab-provenance-badge a {
+      all: initial !important;
+      display: inline-block !important;
+      font-family: inherit !important;
+      font-size: inherit !important;
+      background: rgba(20, 20, 24, 0.86) !important;
+      color: #fff !important;
+      padding: 6px 10px !important;
+      border-radius: 999px !important;
+      text-decoration: none !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25) !important;
+    }
+    #rlab-provenance-badge a:hover {
+      background: rgba(20, 20, 24, 1) !important;
+    }
+  </style>
+  <a href="/cv/resumes">Generated by Self-hosted (vllm) · poolside/Laguna-S-2.1-NVFP4</a>
+</div>
+</body>
+</html>
