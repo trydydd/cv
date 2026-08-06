@@ -18,9 +18,9 @@ Success means the general path feels effortless and credible, the technical path
 
 ## Brand Personality
 
-Precise, transparent, ambitious.
+Precise, transparent, ambitious — and unmistakably human.
 
-The brand should feel like a polished personal portfolio crossed with a reproducible systems lab: confident enough for non-technical viewers, explicit enough for technical reviewers, and restrained enough that the resume remains the hero.
+The brand should feel like a polished personal portfolio crossed with a working lab that someone clearly loves running: confident enough for non-technical viewers, explicit enough for technical reviewers, and warm enough that visitors remember the person behind the letterhead. The resume remains the hero, and it stays straight-faced; personality lives in the voice of the chrome around it — the copy, the colophon, the gallery ledes, the 404 — where dry wit and concrete specifics ("eleven models, one YAML file") do the talking.
 
 ## Anti-references
 
@@ -28,15 +28,18 @@ The brand should feel like a polished personal portfolio crossed with a reproduc
 - Do not bury the default resume behind tooling explanations, model comparisons, or novelty interactions.
 - Do not make the technical gallery feel like an uncurated dump of files.
 - Do not use dense dashboards, heavy chrome, or developer-tool aesthetics for the general-viewer path.
+- Do not mistake restraint for rigor: sterile lab minimalism — all-caps mono labels everywhere, passive system-speak copy, personality sanded off — is as much a failure as the beige template.
+- Do not overcorrect into kitsch: no handwriting fonts, paper textures, or literal skeuomorphism; warmth comes from voice and typography.
 - Do not imply that CI generates new resume content during deployment; generation is manual and pre-commit.
 
 ## Design Principles
 
 1. Route by intent, then disappear: `Resume` gets the gold resume with minimum friction; `Resume Gallery` gets the lab.
 2. Trust through provenance: make model, prompt, input, and output metadata visible where it helps decision-making.
-3. Configuration over code churn: site behavior should follow YAML registries whenever possible.
-4. Resume first, experiment second: technical sophistication should support credibility, not distract from the candidate.
-5. Deterministic deployment: publish reviewed static artifacts and keep model access out of validation and Pages deployment.
+3. Voice is part of the design system: microcopy is first-person, specific, and dryly funny at the edges — never in the resume content or provenance data.
+4. Configuration over code churn: site behavior should follow YAML registries whenever possible.
+5. Resume first, experiment second: technical sophistication should support credibility, not distract from the candidate.
+6. Deterministic deployment: publish reviewed static artifacts and keep model access out of validation and Pages deployment.
 
 ## Accessibility & Inclusion
 
