@@ -36,7 +36,7 @@ The brand should feel like a polished personal portfolio crossed with a working 
 
 1. Route by intent, then disappear: `Resume` gets the gold resume with minimum friction; `Resume Gallery` gets the lab.
 2. Trust through provenance: make model, prompt, input, and output metadata visible where it helps decision-making.
-3. Voice is part of the design system: microcopy is first-person, specific, and dryly funny at the edges — never in the resume content or provenance data.
+3. Voice is part of the design system: microcopy is first-person, specific, and dryly funny at the edges — never in the resume content or provenance data. Human-authored copy follows the generated-copy tells catalogue in DESIGN.md § Voice.
 4. Configuration over code churn: site behavior should follow YAML registries whenever possible.
 5. Resume first, experiment second: technical sophistication should support credibility, not distract from the candidate.
 6. Deterministic deployment: publish reviewed static artifacts and keep model access out of validation and Pages deployment.

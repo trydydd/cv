@@ -21,9 +21,42 @@ Voice is a first-class part of the design system — most of the sterility a vis
 
 - **Write like a person.** First person where the candidate speaks. Active voice. No system-speak ("resources", "leverage", "utilize") in visitor-facing copy.
 - **Specific beats grand.** Name the actual method — the shared prompt, the single source file, the unedited output — instead of "cutting-edge AI-powered generation."
-- **No copywriter cadence.** The AI tell isn't grandness, it's polish: rule-of-three taglines ("eleven models, one YAML file, zero hand edits"), slogan symmetry, and punchline endings all read as generated — which is fatal on a site whose whole claim is knowing what generated output looks like. The test: write the sentence you'd actually say out loud to a colleague, even if it comes out longer and less tidy.
+- **No generated-copy tells.** The banned patterns are catalogued below. This matters more here than on most sites: the gallery publishes unedited model output as evidence, so the human-authored chrome around it must not read like more of the same. The universal test: write the sentence you'd actually say out loud to a colleague, even if it comes out longer and less tidy.
 - **Dry wit at the edges only, and understated.** The 404 page, the footer colophon, gallery ledes, and empty states are personality moments — but the humor is the deadpan of plain description, not a crafted joke. The resume sheet and all provenance data stay straight-faced; trust is the product.
 - **Explain the experiment with pride, not apology.** The gallery is a lab someone enjoys running, not a disclaimer.
+
+### Generated-copy tells (banned in human-authored copy)
+
+Grounded in Wikipedia's [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) and speedy-deletion criterion [G15: LLM-generated pages without human review](https://en.wikipedia.org/wiki/Wikipedia:Speedy_deletion#G15._LLM-generated_pages_without_human_review), filtered to what applies to short site copy. Any one of these can occur in honest human writing; what marks copy as generated is density. Edit until none remain.
+
+**Diction**
+
+- Stock AI vocabulary: "delve", "landscape", "tapestry", "testament", "pivotal", "crucial", "meticulous", "intricate", "vibrant", "boasts", "showcases", "underscores", "fostering", "seamless", "robust". If a word wouldn't survive being said across a desk, cut it.
+- Copula avoidance: "serves as", "stands as", "functions as", "marks" where "is" would do. The resume *is* a resume.
+- Elegant variation — cycling synonyms to dodge repeating a word. Repeat the word; repetition is how humans talk about one thing.
+
+**Sentence shapes**
+
+- Rule-of-three taglines and slogan symmetry ("eleven models, one YAML file, zero hand edits").
+- Negative parallelisms: "not just X, but Y", "it isn't X — it's Y".
+- Trailing participle analysis that adds no fact: "…, highlighting the importance of reproducibility."
+- Formulaic significance framing and wrap-ups: "reflects broader trends", "Despite these challenges…", forward-looking closers that speculate instead of stopping.
+
+**Claims**
+
+- Vague attribution and manufactured consensus: "experts note", "widely regarded", "many consider".
+- Adjectives doing the work of facts. State what happened ("the 230M model left out the last ten years"); let the reader supply the judgment.
+
+**Formatting**
+
+- Mechanical boldface on "key terms"; bolded-header bullet lists standing in for prose.
+- Title Case headings (site style is sentence case), emoji as bullets or dividers, em-dash chains for rhythm.
+
+**Review hygiene** (the G15 lesson: unreviewed output is grounds for deletion)
+
+- No chatbot residue: no "Here is…", "As an AI…", knowledge-cutoff hedges, or unfilled placeholders ("[Birth Date]").
+- Every link, date, hash, and identifier in published copy is verified by a human before it ships. Provenance data with a dead link or wrong hash reads as unreviewed generation and forfeits exactly the trust the lab exists to earn.
+- Nothing human-authored ships without a human having read it aloud once. That is the review.
 
 Register examples (illustrative, not literal strings to paste):
 
