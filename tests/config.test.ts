@@ -58,7 +58,7 @@ const registry: ResumeRegistry = {
       promptVersion: 1,
       resumeHash: 'ghi',
       pdfPath: '/resumes/model-authored-demo.pdf',
-      pageUrl: '/cv/gallery/example-9b/',
+      pageUrl: '/gallery/example-9b/',
     },
     {
       id: 'disabled-demo',
@@ -111,7 +111,7 @@ describe('registry validation', () => {
 
   it('includes model-authored pageUrl resumes without requiring a candidate', () => {
     const resume = getGalleryResumes(registry).find((r) => r.id === 'model-authored-demo');
-    expect(resume?.pageUrl).toBe('/cv/gallery/example-9b/');
+    expect(resume?.pageUrl).toBe('/gallery/example-9b/');
     expect(resume?.candidate).toBeUndefined();
   });
 

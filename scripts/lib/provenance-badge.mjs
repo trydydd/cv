@@ -11,7 +11,7 @@
 
 const BADGE_ID = 'rlab-provenance-badge';
 
-export function injectProvenanceBadge(html, { provider, model, galleryUrl = '/cv/resumes' }) {
+export function injectProvenanceBadge(html, { provider, model, galleryUrl = '/resumes' }) {
   const badge = `
 <div id="${BADGE_ID}">
   <style>

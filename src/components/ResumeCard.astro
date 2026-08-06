@@ -3,12 +3,14 @@ import type { ResumeEntry } from '../lib/types';
 interface Props { resume: ResumeEntry; }
 const { resume } = Astro.props;
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const tags = [
   resume.tier,
   resume.pageUrl && 'model-authored page',
 ].filter(Boolean);
 ---
-<a class="ledger-row" href={resume.pageUrl ?? `/cv/resume/${resume.id}`}>
+<a class="ledger-row" href={resume.pageUrl ?? `${base}/resume/${resume.id}`}>
   <div>
     <h2>{resume.label}{resume.pageUrl && <span class="ext" aria-hidden="true"> &#8599;</span>}</h2>
     <p class="entry-desc">{resume.description}</p>
