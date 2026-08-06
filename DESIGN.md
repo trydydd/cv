@@ -20,15 +20,16 @@ The failure mode this rework corrects: print-editorial restraint executed so cau
 Voice is a first-class part of the design system — most of the sterility a visitor feels is copy, not CSS.
 
 - **Write like a person.** First person where the candidate speaks. Active voice. No system-speak ("resources", "leverage", "utilize") in visitor-facing copy.
-- **Specific beats grand.** "Eleven models, one YAML file, no hand edits" beats "cutting-edge AI-powered generation." Let the numbers be the flex.
-- **Dry wit at the edges only.** The 404 page, the footer colophon, gallery ledes, and empty states are personality moments. The resume sheet and all provenance data stay straight-faced — trust is the product.
+- **Specific beats grand.** Name the actual method — the shared prompt, the single source file, the unedited output — instead of "cutting-edge AI-powered generation."
+- **No copywriter cadence.** The AI tell isn't grandness, it's polish: rule-of-three taglines ("eleven models, one YAML file, zero hand edits"), slogan symmetry, and punchline endings all read as generated — which is fatal on a site whose whole claim is knowing what generated output looks like. The test: write the sentence you'd actually say out loud to a colleague, even if it comes out longer and less tidy.
+- **Dry wit at the edges only, and understated.** The 404 page, the footer colophon, gallery ledes, and empty states are personality moments — but the humor is the deadpan of plain description, not a crafted joke. The resume sheet and all provenance data stay straight-faced; trust is the product.
 - **Explain the experiment with pride, not apology.** The gallery is a lab someone enjoys running, not a disclaimer.
 
 Register examples (illustrative, not literal strings to paste):
 
-- Colophon: "Set in Besley and Atkinson Hyperlegible. Eleven models, one YAML file, zero hand edits."
-- 404: "This page didn't make the shortlist."
-- Gallery lede: "The same resume, written eleven times by eleven models from one YAML file and one prompt. Some of them nailed it."
+- Colophon: "Set in Besley and Atkinson Hyperlegible. The gallery pages are shown exactly as the models returned them — I haven't edited the HTML."
+- 404: "There's no page at this address. The resume is probably what you were after."
+- Gallery lede: "Each model got the same resume data and the same prompt. What you see is its unedited output, so the differences between pages are the models' own."
 
 ## Color
 
@@ -83,7 +84,7 @@ Guidelines:
 The devices that carry personality without breaking the print grammar:
 
 - **Specimen numbering.** Ledger rows carry folio-style numbers (№ 01, № 02 …) in Besley — the gallery is a numbered specimen book, not a file listing.
-- **Margin asides.** Short italic Besley notes in ochre or muted ink beside or beneath structural elements — one wry, specific line ("the 230M model tried its best").
+- **Margin asides.** Short italic Besley notes in ochre or muted ink beside or beneath structural elements — one plain, specific observation whose humor, if any, comes from the fact itself ("the 230M model left out the last ten years").
 - **Footnote provenance.** Metadata rendered like a well-set footnote or colophon block: precise, compact, typographically considered.
 - **Colophon footer.** The footer is a colophon written like a person — typefaces, method, source link — and is a sanctioned wit location.
 - **Ink structure.** Thick top rules for structural boundaries (letterhead, ledger head), hairlines within. Rules are the furniture; keep them.

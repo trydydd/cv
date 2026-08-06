@@ -20,7 +20,7 @@ Success means the general path feels effortless and credible, the technical path
 
 Precise, transparent, ambitious — and unmistakably human.
 
-The brand should feel like a polished personal portfolio crossed with a working lab that someone clearly loves running: confident enough for non-technical viewers, explicit enough for technical reviewers, and warm enough that visitors remember the person behind the letterhead. The resume remains the hero, and it stays straight-faced; personality lives in the voice of the chrome around it — the copy, the colophon, the gallery ledes, the 404 — where dry wit and concrete specifics ("eleven models, one YAML file") do the talking.
+The brand should feel like a polished personal portfolio crossed with a working lab that someone clearly loves running: confident enough for non-technical viewers, explicit enough for technical reviewers, and warm enough that visitors remember the person behind the letterhead. The resume remains the hero, and it stays straight-faced; personality lives in the voice of the chrome around it — the copy, the colophon, the gallery ledes, the 404 — where plain-spoken specifics do the talking: the kind of sentence you'd say out loud to a colleague, never a crafted tagline.
 
 ## Anti-references
 
