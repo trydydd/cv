@@ -186,7 +186,7 @@ async function main() {
     promptVersion,
     resumeHash,
     samplingParams,
-    pageUrl: `/cv/gallery/${id}/`,
+    pageUrl: `/gallery/${id}/`,
   });
   console.log(`Updated config/resumes.yaml with id "${id}".`);
 }

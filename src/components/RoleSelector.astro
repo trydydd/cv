@@ -5,9 +5,11 @@ import { resolveRoleTarget } from '../lib/config';
 interface Props { siteConfig: SiteConfig; }
 const { siteConfig } = Astro.props;
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const entries = [
-  { role: siteConfig.roles.everyone, href: `/cv${resolveRoleTarget('everyone', siteConfig)}`, primary: true },
-  { role: siteConfig.roles.tech, href: `/cv${resolveRoleTarget('tech', siteConfig)}`, primary: false },
+  { role: siteConfig.roles.everyone, href: `${base}${resolveRoleTarget('everyone', siteConfig)}`, primary: true },
+  { role: siteConfig.roles.tech, href: `${base}${resolveRoleTarget('tech', siteConfig)}`, primary: false },
 ];
 ---
 <nav class="contents" aria-label="Contents">
